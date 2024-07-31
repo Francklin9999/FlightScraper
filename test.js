@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer");
 const cheerio = require("cheerio");
 const readline = require('readline');
+const { DEFAULT_VIEWPORT } = require("puppeteer");
 
 const rl = readline.createInterface({
     input: process.stdin,
@@ -44,11 +45,10 @@ async function loadingPrice(html) {
     }
   
   
-}
-
+} 
 
 async function main() {
-    const browser = await puppeteer.launch({ headless: false });
+    const browser = await puppeteer.launch({ headless: false, defaultViewport: false });
     try {
         const answers = [];
     

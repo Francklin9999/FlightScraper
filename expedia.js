@@ -4,38 +4,19 @@ const readline = require('readline');
 const answers = [];
 
 async function Scrape(url) {
-    const web = new WebScraping(1111, url);
+    const web = new WebScraping(delay=1111, url=url);
 
     await web.launchBrowser(true, false);
 
     await web.newPage();
 
-    await web.goTo('networkidle2');
+    await web.goTo(waituntil='networkidle2');
 
-    const priceElement = String(await web.getElement('[stid="FLIGHTS_DETAILS_AND_FARES-index-1-leg-0-fsr-FlightsActionButton"]'));
+    const priceElement = await web.getElementByText('[stid="FLIGHTS_DETAILS_AND_FARES-index-1-leg-0-fsr-FlightsActionButton"]');
 
-    const pattern1 = /\$(\d+)/;
-    const pattern2 = /\$(\d+)\,(\d+)/;
+    await web.getPrice(priceElement);
 
-    let price = WebScraping.regex(pattern2, priceElement);
-
-    if(price === null) {
-        price = WebScraping.regex(pattern1, priceElement);
-    };
-
-    if(price != null) {
-        price = price[0];
-    } else {
-        price = "Not found";
-    }
-
-    console.log();
-    console.log("Lowest price: " + price);
-    console.log();
-
-    console.log();
-    console.log("URL: " + web.url);
-    console.log();
+    web.getUrl;
 
     await web.finalize();
 }

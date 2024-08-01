@@ -1,5 +1,5 @@
 const WebScraping = require('./modal');
-import { cityToAirportCode } from './const';
+// import { cityToAirportCode } from 'airport-code.js';
 
 class Flighthub {
     constructor(data) {
@@ -14,25 +14,11 @@ class Flighthub {
         this.delay = 3333;
     }
 
-    set originAirportCode(city) {
-        if(city.length > 3) {
-            this.originAirportCode = cityToAirportCode[city];
-        }
-    }
-
-    set destinationAirportCode(city) {
-        if(city.length > 3) {
-            this.destinationAirportCode = cityToAirportCode[city];
-        }
-    }
-
     getUrl() {
         return (
-            `https://www.flighthub.com/flight/search?num_adults=1&num_children=0&num_infants=0&num_infants_lap=0&seat_
-            class=Economy&type=roundtrip&campaign=1&seg0_from=${this.originAirportCode}&seg0_to=${this.destinationAirportCode}&seg0
-            _date=${this.departureYear}-${this.departureMonth}-${this.departureDay}&seg1_date=${this.returnYear}-${this.returnMonth}-${this.returnDay}
-            &seg1_from=${this.destinationAirportCode}&seg1_to=${this.originAirportCode}`
+            `https://www.flighthub.com/flight/search?num_adults=1&num_children=0&num_infants=0&num_infants_lap=0&seat_class=Economy&type=roundtrip&campaign=1&seg0_from=${this.originAirportCode}&seg0_to=${this.destinationAirportCode}&seg0_date=${this.departureYear}-${this.departureMonth}-${this.departureDay}&seg1_date=${this.returnYear}-${this.returnMonth}-${this.returnDay}&seg1_from=${this.destinationAirportCode}&seg1_to=${this.originAirportCode}`
         );
+        
     }
 
     setDelay(delay) {
@@ -40,23 +26,27 @@ class Flighthub {
     }
 
     async Scrape() {
+        console.log('Flighthub');
+
         const url = this.getUrl();
 
-        const web = new WebScraping(delay=this.delay, url=url);
+        const web = new WebScraping(this.delay, url);
 
-        await web.launchBrowser(headless=false, viewPort=false);
+        await web.launchBrowser(true, false);
 
         await web.newPage();
 
-        await web.goTo(waitUntil='networkidle2');
+        await web.goTo('networkidle2');
 
-        await web.waitDelay(15000);
+        await web.waitDelay(10000);
 
         const priceElement = await web.getElementByText("a.tab-btn.cheapest");
 
         await web.getPrice(priceElement);
 
-        web.getUrl;
+        const link = await web.getUrl;
+
+        console.log("URL: " + link);
 
         await web.finalize();
     }

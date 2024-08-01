@@ -1,68 +1,51 @@
 const WebScraping = require('./modal');
-const readline = require('readline');
 
-const answers = [];
+class Expedia {
+    constructor(data) {
+        this.originAirport = data["origin"];
+        this.destinationAirport = data["destination"];
+        this.departureDay = data["departure"][0];
+        this.departureMonth = data["departure"][1];
+        this.departureYear = data["departure"][2];
+        this.returnDay = data["return"][0];
+        this.returnMonth = data["return"][1];
+        this.returnYear = data["return"][2];
+        this.delay = 1111;
+    }
 
-async function Scrape(url) {
-    const web = new WebScraping(delay=1111, url=url);
+    getUrl() {
+        return (
+            `https://www.expedia.ca/Flights-Search?flight-type=on&mode=search&trip=roundtrip&leg1=from:${this.originAirport},to:${this.destinationAirport},departure:${this.departureDay}/${this.departureMonth}/${this.departureYear}TANYT,fromType:U,toType:U&leg2=from:${this.destinationAirport},to:${this.originAirport},departure:${this.returnDay}/${this.returnMonth}/${this.returnYear}TANYT,fromType:U,toType:U&options=cabinclass:economy&fromDate=${this.departureDay}/${this.departureMonth}/${this.departureYear}&toDate=${this.returnDay}/${this.returnMonth}/${this.returnYear}&d1=${this.departureYear}-${this.departureMonth}-${this.departureDay}&d2=${this.returnYear}-${this.returnMonth}-${this.returnDay}&passengers=adults:1,infantinlap:N`
+        );
+    }
 
-    await web.launchBrowser(true, false);
+    setDelay(delay) {
+        this.delay = delay;
+    }
 
-    await web.newPage();
+    async Scrape() {
+        console.log('Expedia');
 
-    await web.goTo(waituntil='networkidle2');
+        const url = this.getUrl();
 
-    const priceElement = await web.getElementByText('[stid="FLIGHTS_DETAILS_AND_FARES-index-1-leg-0-fsr-FlightsActionButton"]');
+        const web = new WebScraping(1111, url);
 
-    await web.getPrice(priceElement);
+        await web.launchBrowser(true, false);
 
-    web.getUrl;
+        await web.newPage();
 
-    await web.finalize();
-}
+        await web.goTo('networkidle2');
 
-async function getData() {
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout,
-    });
+        const priceElement = await web.getElementByText('[stid="FLIGHTS_DETAILS_AND_FARES-index-1-leg-0-fsr-FlightsActionButton"]');
 
-    const questions = [
-        'Origin: ',
-        'Destination: ',
-        'Departure Date (DD/MM/YYYY): ',
-        'Return Date (DD/MM/YYYY): ',
-      ];
+        await web.getPrice(priceElement);
 
-    const askQuestion = (index) => {
-        return new Promise((resolve) => {
-            rl.question(questions[index], (answer) => {
-                answers[index] = answer;
-                resolve();
-            });
-        });
-    };
+        const link = web.getUrl;
 
-    for (let i = 0; i < questions.length; i++) {
-        await askQuestion(i);
-    }   
+        console.log("URL: " + link);
 
-    rl.close();
-
-    const [dayOrigin, monthOrigin, yearOrigin] = answers[2].split('/');
-    const [dayDestination, monthDestination, yearDestination] = answers[3].split('/');
-    
-    url = `https://www.expedia.ca/Flights-Search?flight-type=on&mode=search&trip=roundtrip&leg1=from:${answers[0]},to:${answers[1]},departure:${dayOrigin}/${monthOrigin}/${yearOrigin}TANYT,fromType:U,toType:U&leg2=from:${answers[1]},to:${answers[0]},departure:${dayDestination}/${monthDestination}/${yearDestination}TANYT,fromType:U,toType:U&options=cabinclass:economy&fromDate=${dayOrigin}/${monthOrigin}/${yearOrigin}&toDate=${dayDestination}/${monthDestination}/${yearDestination}&d1=${yearOrigin}-${monthOrigin}-${dayOrigin}&d2=${yearDestination}-${monthDestination}-${dayDestination}&passengers=adults:1,infantinlap:N`;
-
-    return url;
-}
-
-async function main() {
-    const url = await getData();
-    console.log();
-    console.log("Searching for the best price...");
-    console.log();
-    await Scrape(url);
+        await web.finalize();
+    }
 };
 
-main();
+module.exports = Expedia;

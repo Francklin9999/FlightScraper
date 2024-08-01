@@ -5,6 +5,8 @@ class WebScraping {
 
     #browser = null;
     #page = null;
+    url = null;
+    delay = null;
 
     constructor(delay=0, url="https://www.google.com") {
         this.delay = delay;
@@ -28,7 +30,7 @@ class WebScraping {
         }
     }
 
-    async goTo(waitUntil='load') {
+    async goTo(waitUntil='load', url=null) {
         if (url !== null) {
             this.url = url;
         }
@@ -63,7 +65,7 @@ class WebScraping {
     }
 
     async getPrice(priceElement) {
-        let price = 'Not Found';
+        let price = null;
         const pattern1 = /(\d+)/;
         const pattern2 = /(\d+)\,(\d+)/;
         if (this.#page !== null) {
@@ -71,7 +73,14 @@ class WebScraping {
             if(price === null) {
                 price = WebScraping.regex(pattern1, priceElement);
             };
-        }
+        };
+
+        if(price === null) {
+            price = 'Not found';
+        } else {
+            price = price[0];
+        };
+        
         console.log();
         console.log("Lowest price: CAD $" + price);
         console.log();

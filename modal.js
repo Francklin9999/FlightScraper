@@ -88,7 +88,7 @@ class WebScraping {
 
     getUrl() {
         if (this.#page !== null) {
-            return this.url;
+            console.log(this.url);
         } else {
             throw new Error('No url is set.');
         }

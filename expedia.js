@@ -30,7 +30,7 @@ class Expedia {
 
         const web = new WebScraping(1111, url);
 
-        await web.launchBrowser(true, false);
+        await web.launchBrowser(false, false);
 
         await web.newPage();
 
@@ -40,9 +40,7 @@ class Expedia {
 
         await web.getPrice(priceElement);
 
-        const link = web.getUrl;
-
-        console.log("URL: " + link);
+        web.getUrl();
 
         await web.finalize();
     }

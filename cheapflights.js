@@ -1,7 +1,6 @@
 const WebScraping = require('./modal');
-// import { cityToAirportCode } from 'airport-code.js';
 
-class Flighthub {
+class Cheapflights {
     constructor(data) {
         this.originAirportCode = data["origin"];
         this.destinationAirportCode = data["destination"];
@@ -16,21 +15,21 @@ class Flighthub {
 
     getUrl() {
         return (
-            `https://www.flighthub.com/flight/search?num_adults=1&num_children=0&num_infants=0&num_infants_lap=0&seat_class=Economy&type=roundtrip&campaign=1&seg0_from=${this.originAirportCode}&seg0_to=${this.destinationAirportCode}&seg0_date=${this.departureYear}-${this.departureMonth}-${this.departureDay}&seg1_date=${this.returnYear}-${this.returnMonth}-${this.returnDay}&seg1_from=${this.destinationAirportCode}&seg1_to=${this.originAirportCode}`
+            `https://www.cheapflights.ca/flight-search/${this.originAirportCode}-${this.destinationAirportCode}/${this.departureYear}-${this.departureMonth}-${this.departureDay}/${this.returnYear}-${this.returnMonth}-${this.returnDay}?sort=price_a`
         );
-        
     }
 
     setDelay(delay) {
         this.delay = delay;
     }
-
     async Scrape() {
-        console.log('Flighthub');
+        console.log();
+        console.log('Cheapflights');
+        console.log();
 
         const url = this.getUrl();
 
-        const web = new WebScraping(this.delay, url);
+        const web = new WebScraping(1111, url);
 
         await web.launchBrowser(false, false);
 
@@ -40,7 +39,7 @@ class Flighthub {
 
         await web.waitDelay(10000);
 
-        const priceElement = await web.getElementByText("a.tab-btn.cheapest");
+        const priceElement = await web.getElementByText('.f8F1-price-text');
 
         await web.getPrice(priceElement);
 
@@ -48,6 +47,7 @@ class Flighthub {
 
         await web.finalize();
     }
-}
+};
 
-module.exports = Flighthub;
+module.exports = Cheapflights;
+

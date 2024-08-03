@@ -1,4 +1,4 @@
-const WebScraping = require('./modal');
+const WebScraping = require('../modal');
 
 async function main() {
 

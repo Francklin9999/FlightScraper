@@ -1,0 +1,43 @@
+.header-content {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-content-items {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    
+}
+
+.header-content-items-title {
+    margin: 0;
+    font-family: 'Lobster', cursive;
+    font-size: 2.5rem;
+}
+
+#header-franck {
+    color:black;
+}
+
+#header-flights {
+    color: blue;
+}
+
+#header-content-items-phrase {
+    text-decoration: underline;
+    font-size: 1.5rem;
+    text-align: center;
+}
+
+#header-cad-flag {
+    height: 20px;
+    width: 34px;
+}
+
+#header-content-items-currency {
+    gap: 20px;
+}

@@ -44,47 +44,42 @@ const data4 = {
 }
 
 async function main() {
-    console.log('Received');
+    const web1 = new expedia();
+    const web2 = new flighthub();
+    const web3 = new skyscanner();
+    const web4 = new cheapflights();
+    
+    web1.Scrape();
+    web2.Scrape();
+    web3.Scrape();
+    web4.Scrape();
+};
 
-    // Create instances
-    const web1 = new expedia(data1);
-    const web2 = new flighthub(data2);
-    const web3 = new skyscanner(data3);
-    const web4 = new cheapflights(data4);
+async function Expedia() {
+    const web = new expedia(data1);
+    return (await web.Scrape());
+};
 
-    try {
-        // Use Promise.all to run all Scrape functions concurrently
-        const [result1, result2, result3, result4] = await Promise.all([
-            web1.Scrape().catch(error => {
-                console.error('Expedia error:', error);
-                return null; // Return null or handle errors as needed
-            }),
-            web2.Scrape().catch(error => {
-                console.error('Flighthub error:', error);
-                return null; // Return null or handle errors as needed
-            }),
-            web3.Scrape().catch(error => {
-                console.error('Skyscanner error:', error);
-                return null; // Return null or handle errors as needed
-            }),
-            web4.Scrape().catch(error => {
-                console.error('Cheapflights error:', error);
-                return null; // Return null or handle errors as needed
-            })
-        ]);
+async function Flighthub() {
+    const web = new flighthub(data2);
+    return (await web.Scrape());
+};
 
-        // Return all results
-        return {
-            expedia: result1,
-            flighthub: result2,
-            skyscanner: result3,
-            cheapflights: result4
-        };
-    } catch (error) {
-        console.error('Error in main function:', error);
-        throw error; // Rethrow or handle errors as needed
-    }
-}
+async function SkyScanner() {
+    const web = new skyscanner(data3);
+    return (await web.Scrape());
+};
 
+async function Cheapflights() {
+    const web = new cheapflights(data4);
+    return (await web.Scrape());
+};
 
-module.exports = main;
+module.exports = {
+    main,
+    Expedia,
+    Flighthub,
+    SkyScanner,
+    Cheapflights,
+};
+

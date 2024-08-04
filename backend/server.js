@@ -1,19 +1,36 @@
 const express = require('express');
 const app = express();
-const scraper = require('../core/main'); // Import the main function
+const { main, Expedia, Flighthub, SkyScanner, Cheapflights } = require('../core/main');
+const { PORT_BACKEND } = require('../const');
 
-app.get("/", async (req, res) => {
-    try {
-        const data = await scraper(); // Await the scraper function
-        res.json(data); // Send the scraped data as JSON
-    } catch (err) {
-        console.error(err); // Log the error to the console
-        res.status(500).json({ message: 'Error scraping data' }); // Send an error response
-    }
-    console.log(2); // This logs to the terminal
+const PORT = PORT_BACKEND;
+
+app.get('/', async (req, res) => {
+    console.log('Received');
+    res.setHeader('Content-Type', 'application/json');
+
+    const functions = [Expedia, Flighthub, SkyScanner, Cheapflights];
+
+    const promises = functions.map(async (fn) => {
+        try {
+            const result = await fn();
+            res.write(JSON.stringify(result) + '\n');
+        } catch (error) {
+            console.error('Error processing function:', error);
+            // res.write(JSON.stringify({ error: 'An error occurred' }) + '\n');
+        };
+    });
+
+    await Promise.all(promises);
+
+    res.end();
 });
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(PORT, () => {
+    console.log(`Server is running on port ${PORT}`);
 });
+
+
+
+
 

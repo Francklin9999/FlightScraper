@@ -11,7 +11,7 @@ const data1 = {
     "adults" : 1,
     "class" : "economy",
     "headless" : true,
-}
+};
 
 const data2 = {
     "origin" : "YUL",
@@ -21,7 +21,7 @@ const data2 = {
     "adults" : 1,
     "class" : "economy",
     "headless" : true,
-}
+};
 
 const data3 = {
     "origin" : "YUL",
@@ -31,7 +31,7 @@ const data3 = {
     "adults" : 1,
     "class" : "economy",
     "headless" : true,
-}
+};
 
 const data4 = {
     "origin" : "YUL",
@@ -41,7 +41,7 @@ const data4 = {
     "adults" : 1,
     "class" : "economy",
     "headless" : true,
-}
+};
 
 async function main() {
     const web1 = new expedia();
@@ -55,23 +55,23 @@ async function main() {
     web4.Scrape();
 };
 
-async function Expedia() {
-    const web = new expedia(data1);
+async function Expedia(data) {
+    const web = new expedia(data);
     return (await web.Scrape());
 };
 
-async function Flighthub() {
-    const web = new flighthub(data2);
+async function Flighthub(data) {
+    const web = new flighthub(data);
     return (await web.Scrape());
 };
 
-async function SkyScanner() {
-    const web = new skyscanner(data3);
+async function SkyScanner(data) {
+    const web = new skyscanner(data);
     return (await web.Scrape());
 };
 
-async function Cheapflights() {
-    const web = new cheapflights(data4);
+async function Cheapflights(data) {
+    const web = new cheapflights(data);
     return (await web.Scrape());
 };
 

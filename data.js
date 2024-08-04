@@ -23,7 +23,7 @@ const data = {
       "class": null
     },
     "cheapflights": {
-      "site": "Expedia",
+      "site": "CheapFlight",
       "price": "$556",
       "url": "https://www.cheapflights.ca/flight-search/YUL-JFK/2024-12-18/2025-01-10undefined?sort=price_a",
       "class": "economy"
@@ -31,3 +31,14 @@ const data = {
   }
 
 export default data;
+
+<li 
+key={index}
+>
+    {item['site']}
+    {item['price']}
+    {item['url']}
+    {item['adultNumber']}
+    {item['class']}
+
+</li>

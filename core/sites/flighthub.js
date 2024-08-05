@@ -56,6 +56,23 @@ class Flighthub {
         this.delay = delay;
     }
 
+    async getPrice(priceElement) {
+        let price = null;
+        const pattern = /([\d,]+\.\d{2})/;
+        price = WebScraping.regex(pattern, priceElement);
+        if(price === null) {
+            price = 'Not found';
+        } else {
+            price = price[0];
+
+            const numericPrice = parseFloat(price.replace(/,/g, ''));
+            const roundedPrice = Math.ceil(numericPrice * 100) / 100;
+            price = roundedPrice.toFixed(2);
+        };
+        
+        return price;
+    }
+
     async Scrape() {
         const url = this.getUrl();
 
@@ -69,15 +86,15 @@ class Flighthub {
 
         await web.waitDelay(10000);
 
-        const priceElement = await web.getElementByText("a.tab-btn.cheapest");
+        const priceElement = await web.getElementByText(".tab-btn.cheapest");
 
         await web.finalize();
 
-        const price = await web.getPrice(priceElement);
+        const price = await this.getPrice(priceElement);
 
         const siteUrl = web.getUrl();
 
-        return { site: "Flighthub", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: (this.#class == null || this.#class == undefined) ? "economy" : null };
+        return { site: "Flighthub", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: this.#class };
     }
 }
 

@@ -14,6 +14,8 @@ class Cheapflights {
         this.returnMonth = data["return"][1];
         this.returnYear = data["return"][2];
         this.oneWay = data["oneWay"] || null;
+        this.adultNumber = data["adult"] || 1;
+        this.class= data["class"] || "economy";
         this.multiCity = data["multiCity"] || null;
         this.headless = data["headless"] || false;
         this.delay = data["delay"] || 1111;
@@ -78,7 +80,7 @@ class Cheapflights {
 
         const siteUrl = web.getUrl();
 
-        return { site: "Cheapflights", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: (this.#class == null || this.#class == undefined) ? "economy" : null };
+        return { site: "Cheapflights", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: this.#class };
     }
 };
 

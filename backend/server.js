@@ -1,7 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const app = express();
-const { main, Expedia, Flighthub, SkyScanner, Cheapflights } = require('../core/main');
+const { Expedia, Flighthub, SkyScanner, Cheapflights } = require('../core/main');
 const { PORT_BACKEND } = require('../const');
 
 const PORT = PORT_BACKEND;
@@ -52,8 +52,3 @@ app.get('/api', async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-
-
-
-
-

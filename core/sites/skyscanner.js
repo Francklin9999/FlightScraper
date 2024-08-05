@@ -74,7 +74,7 @@ class Skyscanner {
 
         const siteUrl = web.getUrl();
 
-        return { site: "SkyScanner", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: (this.#class == null || this.#class == undefined) ? "economy" : null };
+        return { site: "SkyScanner", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: this.#class };
 
     }
 };

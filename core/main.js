@@ -43,40 +43,67 @@ const data4 = {
     "headless" : true,
 };
 
+//To test to the console
 async function main() {
-    const web1 = new expedia();
-    const web2 = new flighthub();
-    const web3 = new skyscanner();
-    const web4 = new cheapflights();
+    const web1 = new expedia(data4);
+    const web2 = new flighthub(data2);
+    const web3 = new skyscanner(data3);
+    const web4 = new cheapflights(data4);
     
-    web1.Scrape();
-    web2.Scrape();
-    web3.Scrape();
-    web4.Scrape();
+    // console.log(await web1.Scrape());
+    // console.log(await web2.Scrape());
+    // console.log(await web3.Scrape());
+    // console.log(await web4.Scrape());
+
+    web1.Scrape().then(response => console.log(response));
+    web2.Scrape().then(response => console.log(response));
+    web3.Scrape().then(response => console.log(response));
+    web4.Scrape().then(response => console.log(response));
 };
+
+// main();
 
 async function Expedia(data) {
     const web = new expedia(data);
-    return (await web.Scrape());
+    try {
+        return (await web.Scrape());
+        } catch (error) {
+            console.error(error);
+            return;
+        };
 };
 
 async function Flighthub(data) {
     const web = new flighthub(data);
-    return (await web.Scrape());
+    try {
+        return (await web.Scrape());
+        } catch (error) {
+            console.error(error);
+            return;
+        };
 };
 
 async function SkyScanner(data) {
     const web = new skyscanner(data);
-    return (await web.Scrape());
+    try {
+        return (await web.Scrape());
+        } catch (error) {
+            console.error(error);
+            return;
+        };
 };
 
 async function Cheapflights(data) {
     const web = new cheapflights(data);
-    return (await web.Scrape());
+    try {
+        return (await web.Scrape());
+        } catch (error) {
+            console.error(error);
+            return;
+        };
 };
 
 module.exports = {
-    main,
     Expedia,
     Flighthub,
     SkyScanner,

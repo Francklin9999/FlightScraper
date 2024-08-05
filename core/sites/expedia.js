@@ -54,6 +54,19 @@ class Expedia {
         this.delay = delay;
     }
 
+    async getPrice(priceElement) {
+        let price = null;
+        const pattern = /\$([\d,]+)/;
+        price = WebScraping.regex(pattern, priceElement);
+        if(price === null) {
+            price = 'Not found';
+        } else {
+            price = price[1];
+        };
+        
+        return price;
+    }
+
     async Scrape() {
         const url = this.getUrl();
 
@@ -69,11 +82,11 @@ class Expedia {
 
         await web.finalize();
 
-        const price = await web.getPrice(priceElement);
+        const price = await this.getPrice(priceElement);
 
         const siteUrl = web.getUrl();
 
-        return { site: "Expedia", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: (this.#class == null || this.#class == undefined) ? "economy" : null };
+        return { site: "Expedia", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: this.#class };
     }
 };
 

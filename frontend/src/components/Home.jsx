@@ -1,38 +1,97 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
+import airportNames from './airport_code.json';
 import '../styles/Home.css';
 
 function Home() {
-    const [departureLocation, setDepartureLocation] = useState('');
-    const [arrivalLocation, setArrivalLocation] = useState('');
+    const navigate = useNavigate();
+
+    const [airportData, setAirportData] = useState([]);
+    const [departureLocation, setDepartureLocation] = useState(null);
+    const [arrivalLocation, setArrivalLocation] = useState(null);
 
     const today = new Date().toISOString().split('T')[0];;
     const [selectedDepatureDate, setSelectedDepatureDate] = useState(today);
     const [selectedReturnDate, setSelectedReturnDate] = useState(today);
 
-    const tripTypeOptions = ['Round Trip', 'One-way', 'Multi-city'];
-
+    const tripTypeOptions = ['Round Trip', 'One-way'];
     const [selectedTripTypeOption, setSelectedTripTypeOption] = useState(tripTypeOptions[0]);
 
-    const handleTripTypeChange = (event) => {
-        setSelectedTripTypeOption(event.target.value);
-      };  
+    const classes = ["Economy", "Premium", "Business", "First"];
+    const [selectedClassOption, setSelectedClassOption] = useState(classes[0]);
 
-    const navigate = useNavigate();
+    const adultsNumber = ["1 Adult", "2 Adult", "3 Adult", "4 Adult"];
+    const [selectedAdultsNumber, setSelectedAdultsNumber] = useState(adultsNumber[0]);
+
+    useEffect(() => {
+        const transformedData = Object.keys(airportNames).map(name => {
+            const { airportCode } = airportNames[name];
+            return `${name} - ${airportCode}`;
+        });
+
+        setAirportData(transformedData);
+    }, []);
+
+    const formatDate = (date) => {
+        const [year, month, day] = date.split('-');
+        return [day, month, year];
+    };
+
+    const formatAirportCode = (airport) => {
+        const temp = airport.split(' - ');
+        const airportCode = temp[temp.length - 1];
+        return airportCode;
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted');
-        navigate('/Search');
+
+        const numberOfAdults = parseInt(selectedAdultsNumber.split(' ')[0], 10);
+
+        const state = {
+            "origin": `${formatAirportCode(departureLocation)}`,
+            "destination": `${formatAirportCode(arrivalLocation)}`,
+            "departure": `${formatDate(selectedDepatureDate)}`,
+            "return": `${formatDate(selectedReturnDate)}`,
+            "adults": numberOfAdults,
+            "class": `${selectedClassOption.toLowerCase()}`, 
+        };
+
+        console.log(state);
+
+        navigate('/Search', { state });
+    };
+
+    const handleAdultNumberChange = (e) => {
+        setSelectedAdultsNumber(e.target.value);
+    };
+
+    const handleTripTypeChange = (e) => {
+        setSelectedTripTypeOption(e.target.value);
+    };  
+
+    const handleClassChange = (e) => {
+        setSelectedClassOption(e.target.value);
+    };
+
+    const handleDepartureLocation = (event, newValue) => {
+        setDepartureLocation(newValue);
+    };
+
+    const handleArrivalLocation = (event, newValue) => {
+        setArrivalLocation(newValue);
     };
 
     const handleDepatureDate = (e) => {
         setSelectedDepatureDate(e.target.value);
-    }
+    };
 
     const handleReturnDate = (e) => {
         setSelectedReturnDate(e.target.value);
-    }
+    };
 
     return (
         <>
@@ -43,19 +102,34 @@ function Home() {
                 <form onSubmit={handleSubmit} method="get" className="container-fluid" id="home-content">
                     <div className="row home-content-row">
                         <div className="col-4">
-                            <select className="home-content-inputs" value={selectedTripTypeOption} onChange={handleTripTypeChange}>
-                                {tripTypeOptions.map((option, index) => (
-                                <option key={index} value={option}>
-                                    {option}
-                                </option>
-                                ))}
-                            </select>
+                            <Autocomplete
+                                onChange={handleTripTypeChange}
+                                disablePortal
+                                className="custom-autocomplete home-content-inputs"
+                                options={tripTypeOptions}
+                                value={selectedTripTypeOption}
+                                renderInput={(params) => <TextField {...params} />}
+                            />
                         </div>
                         <div className="col-4">
-                            <input placeholder='Departing from' className="home-content-inputs" required></input>
+                            <Autocomplete
+                                onChange={handleDepartureLocation}
+                                disablePortal
+                                className="custom-autocomplete home-content-inputs"
+                                options={airportData}
+                                value={departureLocation}
+                                renderInput={(params) => <TextField {...params} label="Departure" />}
+                            />
                         </div>
                         <div className="col-3">
-                            <input placeholder='Arriving at' className="home-content-inputs" required></input>
+                          <Autocomplete
+                                onChange={handleArrivalLocation}
+                                disablePortal
+                                className="custom-autocomplete home-content-inputs"
+                                options={airportData}
+                                value={arrivalLocation}
+                                renderInput={(params) => <TextField {...params} label="Arrival" />}
+                            />
                         </div>
                     </div>
                     <div className="row home-content-row">
@@ -87,10 +161,24 @@ function Home() {
                             </div>
                         </div>
                         <div className="col-4">
-                            <input placeholder='1 adult' className="home-content-inputs" required></input>
+                            <Autocomplete
+                                onChange={handleAdultNumberChange}
+                                disablePortal
+                                className="custom-autocomplete home-content-inputs"
+                                options={adultsNumber}
+                                value={selectedAdultsNumber}
+                                renderInput={(params) => <TextField {...params} />}
+                            />
                         </div>
                         <div className="col-3">
-                            <input placeholder='Economy' className="home-content-inputs" required></input>
+                            <Autocomplete
+                                onChange={handleClassChange}
+                                disablePortal
+                                className="custom-autocomplete home-content-inputs"
+                                options={classes}
+                                value={selectedClassOption}
+                                renderInput={(params) => <TextField {...params} />}
+                            />
                         </div>
                     </div>
                     <div className="row home-content-row">

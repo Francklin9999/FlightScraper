@@ -15,7 +15,7 @@ const data1 = {
 
 const data2 = {
     "origin" : "YUL",
-    "destination" : "JFK",
+    "destination" : "DLA",
     "departure" : ["18", "12", "2024"],
     "return" : ["10", "01", "2025"],
     "adults" : 1,
@@ -43,65 +43,117 @@ const data4 = {
     "headless" : true,
 };
 
-//To test to the console
-async function main() {
-    const web1 = new expedia(data4);
-    const web2 = new flighthub(data2);
-    const web3 = new skyscanner(data3);
-    const web4 = new cheapflights(data4);
-    
-    // console.log(await web1.Scrape());
-    // console.log(await web2.Scrape());
-    // console.log(await web3.Scrape());
-    // console.log(await web4.Scrape());
-
-    web1.Scrape().then(response => console.log(response));
-    web2.Scrape().then(response => console.log(response));
-    web3.Scrape().then(response => console.log(response));
-    web4.Scrape().then(response => console.log(response));
-};
-
-// main();
-
 async function Expedia(data) {
     const web = new expedia(data);
     try {
-        return (await web.Scrape());
-        } catch (error) {
-            console.error(error);
-            return;
+        let elements = await web.Scrape();
+        let retries = 3; 
+        while (elements["price"] === "$$Not found" && retries > 0) {
+            console.log("Price not found, retrying...");
+            elements = await web.Scrape();
+            retries--;
         };
+
+        if (elements["price"] === "$Not found") {
+            console.log("Price not found after multiple attempts.");
+            return null;
+        };
+
+        return elements;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+    };
 };
 
 async function Flighthub(data) {
     const web = new flighthub(data);
     try {
-        return (await web.Scrape());
-        } catch (error) {
-            console.error(error);
-            return;
+        let elements = await web.Scrape();
+        let retries = 3; 
+        while (elements["price"] === "$Not found" && retries > 0) {
+            console.log("Price not found, retrying...");
+            elements = await web.Scrape();
+            retries--;
         };
+
+        if (elements["price"] === "$Not found") {
+            console.log("Price not found after multiple attempts.");
+            return null;
+        };
+
+        return elements;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+    };
 };
 
 async function SkyScanner(data) {
     const web = new skyscanner(data);
     try {
-        return (await web.Scrape());
-        } catch (error) {
-            console.error(error);
-            return;
+        let elements = await web.Scrape();
+        let retries = 3; 
+        while (elements["price"] === "$Not found" && retries > 0) {
+            console.log("Price not found, retrying...");
+            elements = await web.Scrape();
+            retries--;
         };
+
+        if (elements["price"] === "$Not found") {
+            console.log("Price not found after multiple attempts.");
+            return null;
+        };
+
+        return elements;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+    };
 };
 
 async function Cheapflights(data) {
     const web = new cheapflights(data);
     try {
-        return (await web.Scrape());
-        } catch (error) {
-            console.error(error);
-            return;
+        let elements = await web.Scrape();
+        let retries = 3; 
+        while (elements["price"] === "$Not found" && retries > 0) {
+            console.log("Price not found, retrying...");
+            elements = await web.Scrape();
+            retries--;
         };
+
+        if (elements["price"] === "$Not found") {
+            console.log("Price not found after multiple attempts.");
+            return null;
+        };
+
+        return elements;
+    } catch (error) {
+        console.error("Error fetching data:", error);
+        return null;
+    };
 };
+
+//To test to the console
+async function main() {
+    // const web1 = ;
+    // const web2 = ;
+    // const web3 = ;
+    // const web4 = ;
+    
+    // // console.log(await web1.Scrape());
+    // // console.log(await web2.Scrape());
+    // // console.log(await web3.Scrape());
+    // // console.log(await web4.Scrape());
+
+    Expedia(data2).then(response => console.log(response));
+    Flighthub(data2).then(response => console.log(response));
+    SkyScanner(data2).then(response => console.log(response));
+    Cheapflights(data2).then(response => console.log(response));
+};
+
+// main();
 
 module.exports = {
     Expedia,

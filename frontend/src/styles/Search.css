@@ -7,7 +7,7 @@
 .search-result {
     display: flex;
     flex-direction: column;
-    background-color: #6b6b6b;
+    background-color: #e3dfdf;
     width: 80%;
     height: auto;
     padding: 3px;

@@ -1,26 +1,25 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-// import { PORT_BACKEND } from '../../../const';
+import { useNavigate, useLocation } from 'react-router-dom';
 import '../styles/Search.css';
 
 function Search() {
+    const location = useLocation();
+    const state = location.state || {};
+    const navigate = useNavigate();
+
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        const url = new URL('http://localhost:3000/api');
-        const params = {                 
-            "origin": "YUL",
-            "destination": "JFK",
-            "departure": ["18", "12", "2024"],
-            "return": ["10", "01", "2025"],
-            "adults": 1,
-            "class": "economy",
-            "headless": true,
-        };
+        if (!state || Object.keys(state).length === 0) {
+            navigate('/'); 
+            return;
+        }
 
-        Object.keys(params).forEach(key => url.searchParams.append(key, params[key]));
+        const url = new URL('http://localhost:3000/api');
+        
+        Object.keys(state).forEach(key => url.searchParams.append(key, state[key]));
 
         fetch(url)
         .then(async response => {

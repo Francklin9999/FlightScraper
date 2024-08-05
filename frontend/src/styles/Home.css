@@ -17,7 +17,11 @@
 }
 
 .home-content-inputs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 80%;
+    height: 50px;
     border: 2px solid black;
     border-radius: 8px;
     margin: 15px 5px; 
@@ -68,4 +72,31 @@
 .home-submit-button {
     display: flex;
     justify-content: end;
+}
+
+#test {
+    border: none;
+    background-color: aqua;
+}
+
+.custom-autocomplete .MuiOutlinedInput-root {
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    border: none; /* Remove border */
+    box-shadow: none; /* Remove box shadow */
+}
+
+.custom-autocomplete .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+    border: none; /* Remove border outline */
+}
+
+.custom-autocomplete .MuiInputLabel-root {
+    margin: 0; /* Remove margin from label */
+    padding: 0; /* Remove padding from label */
+    color: inherit; /* Optional: Adjust label color */
+}
+
+.custom-autocomplete .MuiInputBase-root {
+    padding: 0; /* Remove padding from input */
+    margin: 0; /* Remove margin from input */
 }

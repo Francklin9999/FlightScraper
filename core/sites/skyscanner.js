@@ -16,7 +16,7 @@ class Skyscanner {
         this.adultNumber = data["adult"] || 1;
         this.class= data["class"] || "economy";
         this.oneWay = data["oneWay"] || null;
-        this.headless = data["headless"] || false;
+        this.headless = data["headless"] || true;
         this.delay = data["delay"] || 3333;
     }
 
@@ -30,7 +30,6 @@ class Skyscanner {
             `https://www.skyscanner.ca/transport/vols/${this.originAirportCode}/${this.destinationAirportCode}/${this.departureYear}${this.departureMonth}${this.departureDay}/${this.returnYear}${this.returnMonth}${this.returnDay}/?adultsv2=1&cabinclass=${this.#class}&childrenv2=&ref=home&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false`
         );
     }
-
     set class(value) {
         const _classes = {
             "economy" : "Economy",
@@ -54,29 +53,34 @@ class Skyscanner {
         this.delay = delay;
     }
     async Scrape() {
-        const url = this.getUrl();
+        try {
+            const url = this.getUrl();
 
-        const web = new WebScraping({ delay:this.delay, url:url });
+            const web = new WebScraping({ delay:this.delay, url:url });
 
-        await web.launchBrowser({ headless:this.headless, viewPort:false });
+            await web.launchBrowser({ headless:this.headless, viewPort:false });
 
-        await web.newPage();
+            await web.newPage();
 
-        await web.goTo({ waitUntil:'networkidle2' });
+            await web.goTo({ waitUntil:'networkidle2' });
 
-        await web.waitDelay(25000);
+            await web.waitDelay(25000);
 
-        const priceElement = await web.getElementByText('.Price_fqsTabWithSparklePriceSelected__NWFlZ');
+            const priceElement = await web.getElementByText('.Price_fqsTabWithSparklePriceSelected__NWFlZ');
 
-        await web.finalize();
+            await web.finalize();
 
-        const price = await web.getPrice(priceElement);
+            const price = await web.getPrice(priceElement);
 
-        const siteUrl = web.getUrl();
+            const siteUrl = web.getUrl();
 
-        return { site: "SkyScanner", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: this.#class };
+            return { site: "SkyScanner", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: this.#class };
 
-    }
+        } catch (error) {
+            return;
+        };
+    
+        };
 };
 
 module.exports = Skyscanner;

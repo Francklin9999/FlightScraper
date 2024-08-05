@@ -15,12 +15,16 @@ class WebScraping {
 
     async launchBrowser({ headless=true, viewPort={ width: 1280, height: 800 } } = {}) {
         puppeteer.use(StealthPlugin());
-        this.#browser = await puppeteer.launch({
-            headless: headless,
-            args: ['--no-sandbox'],
-            defaultViewport: viewPort,
-        });
-    }
+        try {
+            this.#browser = await puppeteer.launch({
+                headless: headless,
+                args: ['--no-sandbox'],
+                defaultViewport: viewPort,
+            });
+        } catch (error) {
+            throw new Error('Launch Failed');
+        };
+    };
 
     async newPage() {
         if (this.#browser !== null) {

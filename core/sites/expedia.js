@@ -16,7 +16,7 @@ class Expedia {
         this.adultNumber = data["adult"] || 1;
         this.class= data["class"] || "economy";
         this.oneWay = data["oneWay"] || null;
-        this.headless = data["headless"] || false;
+        this.headless = data["headless"] || true;
         this.delay = data["delay"] || 1111;
     }
 
@@ -68,26 +68,31 @@ class Expedia {
     }
 
     async Scrape() {
-        const url = this.getUrl();
+        try {
+            const url = this.getUrl();
 
-        const web = new WebScraping({ delay:this.delay, url:url });
+            const web = new WebScraping({ delay:this.delay, url:url });
 
-        await web.launchBrowser({ headless:this.headless, viewPort:false });
+            await web.launchBrowser({ headless:this.headless, viewPort:false });
 
-        await web.newPage();
+            await web.newPage();
 
-        await web.goTo({ waitUntil:'networkidle2' });
+            await web.goTo({ waitUntil:'networkidle2' });
 
-        const priceElement = await web.getElementByText('[stid="FLIGHTS_DETAILS_AND_FARES-index-1-leg-0-fsr-FlightsActionButton"]');
+            const priceElement = await web.getElementByText('[stid="FLIGHTS_DETAILS_AND_FARES-index-1-leg-0-fsr-FlightsActionButton"]');
 
-        await web.finalize();
+            await web.finalize();
 
-        const price = await this.getPrice(priceElement);
+            const price = await this.getPrice(priceElement);
 
-        const siteUrl = web.getUrl();
+            const siteUrl = web.getUrl();
 
-        return { site: "Expedia", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: this.#class };
-    }
+            return { site: "Expedia", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: this.#class };
+        
+            } catch (error) {
+                return
+            };
+        };
 };
 
 module.exports = Expedia;

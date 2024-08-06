@@ -20,17 +20,29 @@ app.get('/api', async (req, res) => {
     function transformParameters(params) {
         const departureArray = params.departure.split(',');
         const returnArray = params.return.split(',');
-      
-        const adults = Number(params.adults);
+        
+        const formatDate = (date) => {
+            const [year, month, day] = date.split('-');
+            return [day, month, year];
+        };
+    
+        const formatAirportCode = (airport) => {
+            const temp = airport.split(' - ');
+            const airportCode = temp[temp.length - 1];
+            return airportCode;
+        }
+
+        const adults = parseInt(params.adults.split(' ')[0], 10);
+
         const headless = true; 
       
         return {
-            origin: params.origin,
-            destination: params.destination,
-            departure: departureArray,
-            return: returnArray,
+            origin: formatAirportCode(params.origin),
+            destination: formatAirportCode(params.destination),
+            departure: formatDate(params.departure),
+            return: formatDate(params.return),
             adults: adults,
-            class: params.class,
+            class: params.class.toLowerCase(),
             headless: headless
         };
     }

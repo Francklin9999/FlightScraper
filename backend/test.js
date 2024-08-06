@@ -14,22 +14,42 @@ const test_data = {
     "headless": true,
 };
 
+const test_data2 ={
+    "origin": "Aberdeen (SD) - ABR",
+    "destination": "Abu Dhabi - Abu Dhabi International - AUH",
+    "departure": "2024-08-06",
+    "return": "2024-08-06",
+    "adults": "1 Adult",
+    "class": "Economy",
+    "headless": true,
+}
+
 // Convert the test_data object to a query string
 const queryString = querystring.stringify({
     origin: test_data.origin,
     destination: test_data.destination,
-    departure: test_data.departure.join(','), // Convert array to comma-separated string
-    return: test_data.return.join(','),       // Convert array to comma-separated string
+    departure: test_data.departure.join(','), 
+    return: test_data.return.join(','),    
     adults: test_data.adults,
     class: test_data.class,
-    headless: test_data.headless.toString()    // Convert boolean to string
+    headless: test_data.headless.toString() 
+});
+
+const queryString2 = querystring.stringify({
+    origin: test_data2.origin,
+    destination: test_data2.destination,
+    departure: test_data2.departure,
+    return: test_data2.return,   
+    adults: test_data2.adults,
+    class: test_data2.class,
+    headless: test_data2.headless,
 });
 
 // Set up the request options
 const options = {
     hostname: 'localhost',
     port: 3000,
-    path: `/api?${queryString}`, // Ensure '?' is included before the query string
+    path: `/api?${queryString2}`, // Ensure '?' is included before the query string
     method: 'GET',
 };
 

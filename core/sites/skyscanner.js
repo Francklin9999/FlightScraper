@@ -64,8 +64,6 @@ class Skyscanner {
 
             await web.goTo({ waitUntil:'networkidle2' });
 
-            await web.waitDelay(25000);
-
             const priceElement = await web.getElementByText('.Price_fqsTabWithSparklePriceSelected__NWFlZ');
 
             await web.finalize();

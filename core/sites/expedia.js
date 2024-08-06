@@ -87,7 +87,7 @@ class Expedia {
 
             const siteUrl = web.getUrl();
 
-            return { site: "Expedia", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: this.#class };
+            return { site: "Expedia", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: (this.#class.charAt(0).toUpperCase() + this.#class.slice(1)) };
         
             } catch (error) {
                 return

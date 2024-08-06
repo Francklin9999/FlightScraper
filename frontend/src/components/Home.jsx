@@ -34,30 +34,17 @@ function Home() {
         setAirportData(transformedData);
     }, []);
 
-    const formatDate = (date) => {
-        const [year, month, day] = date.split('-');
-        return [day, month, year];
-    };
-
-    const formatAirportCode = (airport) => {
-        const temp = airport.split(' - ');
-        const airportCode = temp[temp.length - 1];
-        return airportCode;
-    }
-
     const handleSubmit = (e) => {
         e.preventDefault();
         console.log('Form submitted');
 
-        const numberOfAdults = parseInt(selectedAdultsNumber.split(' ')[0], 10);
-
         const state = {
-            "origin": `${formatAirportCode(departureLocation)}`,
-            "destination": `${formatAirportCode(arrivalLocation)}`,
-            "departure": `${formatDate(selectedDepatureDate)}`,
-            "return": `${formatDate(selectedReturnDate)}`,
-            "adults": numberOfAdults,
-            "class": `${selectedClassOption.toLowerCase()}`, 
+            "origin": departureLocation,
+            "destination": arrivalLocation,
+            "departure": selectedDepatureDate,
+            "return": selectedReturnDate,
+            "adults": selectedAdultsNumber,
+            "class": selectedClassOption, 
         };
 
         console.log(state);

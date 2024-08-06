@@ -71,8 +71,6 @@ class Cheapflights {
 
             await web.goTo({ waitUntil:'networkidle2' });
 
-            await web.waitDelay(10000);
-
             const priceElement = await web.getElementByText('.f8F1-price-text');
 
             await web.finalize();
@@ -81,7 +79,7 @@ class Cheapflights {
 
             const siteUrl = web.getUrl();
 
-            return { site: "Cheapflights", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: this.#class };
+            return { site: "Cheapflights", price: `$${price}`, url: siteUrl, adultNumber: this.adultNumber, class: (this.#class == "") ? "Economy" : this.#class };
             
             } catch (error) {
                 return

@@ -48,7 +48,7 @@ async function Expedia(data) {
     try {
         let elements = await web.Scrape();
         let retries = 3; 
-        while (elements["price"] === "$$Not found" && retries > 0) {
+        while (elements["price"] === "$Not found" && retries > 0) {
             console.log("Price not found, retrying...");
             elements = await web.Scrape();
             retries--;

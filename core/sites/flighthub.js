@@ -85,8 +85,6 @@ class Flighthub {
 
             await web.goTo({ waitUntil:'networkidle2' });
 
-            await web.waitDelay(10000);
-
             const priceElement = await web.getElementByText(".tab-btn.cheapest");
 
             await web.finalize();

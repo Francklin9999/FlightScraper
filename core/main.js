@@ -1,7 +1,7 @@
-const expedia = require('./sites/expedia');
-const flighthub = require('./sites/flighthub');
-const skyscanner = require('./sites/skyscanner');
-const cheapflights = require('./sites/cheapflights');
+const expedia = require('./sites/components/expedia');
+const flighthub = require('./sites/components/flighthub');
+const skyscanner = require('./sites/components/skyscanner');
+const cheapflights = require('./sites/components/cheapflights');
 
 const data1 = {
     "origin" : "Montreal",
@@ -47,17 +47,17 @@ async function Expedia(data) {
     const web = new expedia(data);
     try {
         let elements = await web.Scrape();
-        let retries = 3; 
-        while (elements["price"] === "$Not found" && retries > 0) {
-            console.log("Price not found, retrying...");
-            elements = await web.Scrape();
-            retries--;
-        };
+        // let retries = 3; 
+        // while (elements["price"] === "$Not found" && retries > 0) {
+        //     console.log("Price not found, retrying...");
+        //     elements = await web.Scrape();
+        //     retries--;
+        // };
 
-        if (elements["price"] === "$Not found") {
-            console.log("Price not found after multiple attempts.");
-            return null;
-        };
+        // if (elements["price"] === "$Not found") {
+        //     console.log("Price not found after multiple attempts.");
+        //     return null;
+        // };
 
         return elements;
     } catch (error) {
@@ -70,17 +70,17 @@ async function Flighthub(data) {
     const web = new flighthub(data);
     try {
         let elements = await web.Scrape();
-        let retries = 3; 
-        while (elements["price"] === "$Not found" && retries > 0) {
-            console.log("Price not found, retrying...");
-            elements = await web.Scrape();
-            retries--;
-        };
+        // let retries = 3; 
+        // while (elements["price"] === "$Not found" && retries > 0) {
+        //     console.log("Price not found, retrying...");
+        //     elements = await web.Scrape();
+        //     retries--;
+        // };
 
-        if (elements["price"] === "$Not found") {
-            console.log("Price not found after multiple attempts.");
-            return null;
-        };
+        // if (elements["price"] === "$Not found") {
+        //     console.log("Price not found after multiple attempts.");
+        //     return null;
+        // };
 
         return elements;
     } catch (error) {
@@ -93,17 +93,17 @@ async function SkyScanner(data) {
     const web = new skyscanner(data);
     try {
         let elements = await web.Scrape();
-        let retries = 3; 
-        while (elements["price"] === "$Not found" && retries > 0) {
-            console.log("Price not found, retrying...");
-            elements = await web.Scrape();
-            retries--;
-        };
+        // let retries = 3; 
+        // while (elements["price"] === "$Not found" && retries > 0) {
+        //     console.log("Price not found, retrying...");
+        //     elements = await web.Scrape();
+        //     retries--;
+        // };
 
-        if (elements["price"] === "$Not found") {
-            console.log("Price not found after multiple attempts.");
-            return null;
-        };
+        // if (elements["price"] === "$Not found") {
+        //     console.log("Price not found after multiple attempts.");
+        //     return null;
+        // };
 
         return elements;
     } catch (error) {
@@ -116,17 +116,17 @@ async function Cheapflights(data) {
     const web = new cheapflights(data);
     try {
         let elements = await web.Scrape();
-        let retries = 3; 
-        while (elements["price"] === "$Not found" && retries > 0) {
-            console.log("Price not found, retrying...");
-            elements = await web.Scrape();
-            retries--;
-        };
+        // let retries = 3; 
+        // while (elements["price"] === "$Not found" && retries > 0) {
+        //     console.log("Price not found, retrying...");
+        //     elements = await web.Scrape();
+        //     retries--;
+        // };
 
-        if (elements["price"] === "$Not found") {
-            console.log("Price not found after multiple attempts.");
-            return null;
-        };
+        // if (elements["price"] === "$Not found") {
+        //     console.log("Price not found after multiple attempts.");
+        //     return null;
+        // };
 
         return elements;
     } catch (error) {
@@ -147,10 +147,10 @@ async function main() {
     // // console.log(await web3.Scrape());
     // // console.log(await web4.Scrape());
 
-    Expedia(data2).then(response => console.log(response));
-    Flighthub(data2).then(response => console.log(response));
-    SkyScanner(data2).then(response => console.log(response));
-    Cheapflights(data2).then(response => console.log(response));
+    // Expedia(data2).then(response => console.log(response));
+    // Flighthub(data2).then(response => console.log(response));
+    // SkyScanner(data2).then(response => console.log(response));
+    // Cheapflights(data2).then(response => console.log(response));
 };
 
 // main();

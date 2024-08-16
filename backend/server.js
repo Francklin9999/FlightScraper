@@ -1,3 +1,5 @@
+// This was for stream data but app.js is being use for now
+
 const express = require('express');
 const cors = require('cors');
 const app = express();
@@ -18,8 +20,6 @@ app.get('/api', async (req, res) => {
     }
 
     function transformParameters(params) {
-        const departureArray = params.departure.split(',');
-        const returnArray = params.return.split(',');
         
         const formatDate = (date) => {
             const [year, month, day] = date.split('-');
@@ -57,7 +57,7 @@ app.get('/api', async (req, res) => {
         }
     };
 
-    const functions = [Expedia, Flighthub, SkyScanner, Cheapflights];
+    const functions = [Flighthub, SkyScanner, Cheapflights];
 
     for (const fn of functions) {
         try {

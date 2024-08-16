@@ -5,12 +5,12 @@ const querystring = require('querystring');
 
 // Assuming test_data is already in the correct format
 const test_data = {
-    "origin": "YUL",
-    "destination": "JFK",
-    "departure": ["18", "12", "2024"],
-    "return": ["10", "01", "2025"],
-    "adults": 1,
-    "class": "economy",
+    "origin": "Montreal - Dorval (Montréal-Trudeau) - YUL",
+    "destination": "New York - John F. Kennedy (NY) - JFK",
+    "departure": "2024-10-09",
+    "return": "2024-11-09",
+    "adults": "1 Adult",
+    "class": "Economy",
     "headless": true,
 };
 
@@ -28,11 +28,11 @@ const test_data2 ={
 const queryString = querystring.stringify({
     origin: test_data.origin,
     destination: test_data.destination,
-    departure: test_data.departure.join(','), 
-    return: test_data.return.join(','),    
+    departure: test_data.departure, 
+    return: test_data.return,    
     adults: test_data.adults,
     class: test_data.class,
-    headless: test_data.headless.toString() 
+    headless: test_data.headless, 
 });
 
 const queryString2 = querystring.stringify({
@@ -49,29 +49,31 @@ const queryString2 = querystring.stringify({
 const options = {
     hostname: 'localhost',
     port: 3000,
-    path: `/api?${queryString2}`, // Ensure '?' is included before the query string
+    path: `/api?${queryString}`, // Ensure '?' is included before the query string
     method: 'GET',
 };
 
 // Make the GET request
-http.get(options, (res) => {
-    let data = '';
+// http.get(options, (res) => {
+//     let data = '';
 
-    // Collect data chunks
-    res.on('data', (chunk) => {
-        data += chunk;
-        console.log(`Received chunk: ${chunk}`);
-    });
+//     // Collect data chunks
+//     res.on('data', (chunk) => {
+//         data += chunk;
+//         console.log(`Received chunk: ${chunk}`);
+//     });
 
-    // Handle the end of the response
-    res.on('end', () => {
-        console.log('No more data.');
-        console.log('Full response:', data);
-    });
+//     // Handle the end of the response
+//     res.on('end', () => {
+//         console.log('No more data.');
+//         console.log('Full response:', data);
+//     });
 
-}).on('error', (e) => {
-    console.error(`Got error: ${e.message}`);
-});
+// }).on('error', (e) => {
+//     console.error(`Got error: ${e.message}`);
+// });
+
+console.log(options)
 
 
 

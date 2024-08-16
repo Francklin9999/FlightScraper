@@ -1,5 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { fetchAndProcessData } from '../api/services'
 import '../styles/Search.css';
 
 function Search() {
@@ -11,43 +12,36 @@ function Search() {
     const [data, setData] = useState([]);
     const [error, setError] = useState(null);
 
-    const fetchData = useCallback(async (url) => {
-        fetch(url)
-        .then(async response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-
-            const reader = response.body
-            .pipeThrough(new TextDecoderStream())
-            .getReader();
-            
-            while(true) {
-                const {done, value} = await reader.read();
-                setLoading(false);
-                if(done) break;
-                const _value = JSON.parse(value);
-                console.log(_value["price"]);
-                setData(prevData => [...prevData, _value]);
-            };
-        })
-        .catch(error => {
-            setError(error);
-        });
-      }, []);
-    
-      useEffect(() => {
-        if (!state || Object.keys(state).length === 0) {
-          navigate('/');
-          return;
+    const fetchData = useCallback(async () => {
+        try {
+            const data = await fetchAndProcessData(state);
+            return data;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            return null;
         }
-    
-        const url = new URL('http://localhost:3000/api');
-        Object.keys(state).forEach(key => url.searchParams.append(key, state[key]));
-    
-        fetchData(url);
-      }, [state]);
-    
+    }, [state]);
+
+    useEffect(() => {
+        const loadData = async () => {
+            if (!state || Object.keys(state).length === 0) {
+                navigate('/');
+                return;
+            }
+            const data = await fetchData();
+            if (data) {
+                setData(data);
+                setLoading(false);
+                console.log(`Data ${data}`);
+            } else {
+                setLoading(false);
+            }
+        };
+
+        loadData();
+    }, [fetchData, navigate, state]);
+
+
     if(loading) {
         return (
             <div className="search-loading-screen">
@@ -136,3 +130,52 @@ function Search() {
 };
 
 export default Search;
+
+
+
+
+
+
+
+
+
+
+
+//Junk
+
+    // const fetchData = useCallback(async (url) => {
+    //     fetch(url)
+    //     .then(async response => {
+    //         if (!response.ok) {
+    //             throw new Error('Network response was not ok');
+    //         }
+
+    //         const reader = response.body
+    //         .pipeThrough(new TextDecoderStream())
+    //         .getReader();
+            
+    //         while(true) {
+    //             const {done, value} = await reader.read();
+    //             setLoading(false);
+    //             if(done) break;
+    //             const _value = JSON.parse(value);
+    //             console.log(_value["price"]);
+    //             setData(prevData => [...prevData, _value]);
+    //         };
+    //     })
+    //     .catch(error => {
+    //         setError(error);
+    //     });
+    //   }, []);
+    
+    //   useEffect(() => {
+    //     if (!state || Object.keys(state).length === 0) {
+    //       navigate('/');
+    //       return;
+    //     }
+    
+    //     const url = new URL('http://localhost:3000/api');
+    //     Object.keys(state).forEach(key => url.searchParams.append(key, state[key]));
+    
+    //     fetchData(url);
+    //   }, [state]);

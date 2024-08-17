@@ -88,11 +88,16 @@ class Skyscanner extends FlightScraper {
                     });
         
                     results.push({
-                        price,
-                        img,
-                        airline,
-                        departureData: dataArr[0] || '',
-                        returnData: dataArr[1] || ''
+                        Airline: airline,
+                        Departure: {
+                            Duration: dataArr[0].duration,
+                            Stop: dataArr[0].stop || 'NonStop'
+                        },
+                        Return: {
+                            Duration: dataArr[1].duration,
+                            Stop: dataArr[1].stop || 'NonStop'
+                        },
+                        Price: price,
                     });
                 });
         

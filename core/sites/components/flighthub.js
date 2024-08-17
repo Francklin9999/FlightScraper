@@ -82,9 +82,17 @@ class Flighthub extends FlightScraper {
                     const departureData = data[0] || { img: '', airline: '', duration: '', combinedTime: '' };
                     const returnData = data[1] || { img: '', airline: '', duration: '', combinedTime: '' };
                     results.push({
-                        price,
-                        departureData,
-                        returnData
+                        Airline: {
+                            1: departureData.airline,
+                            2: returnData.airline
+                        },
+                        Departure: {
+                            Duration: departureData[2],
+                        },
+                        Return: {
+                            Duration: returnData[2],
+                            },
+                        Price: price,
                     });
                 });
         

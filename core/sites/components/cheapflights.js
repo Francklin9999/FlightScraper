@@ -88,12 +88,25 @@ class Cheapflights extends FlightScraper {
                     const departureData = data[0] || { time: '', stop: '', duration: '' };
                     const returnData = data[1] || { time: '', stop: '', duration: '' };
         
+                    // results.push({
+                    //     price,
+                    //     img,
+                    //     airline,
+                    //     departureData,
+                    //     returnData
+                    // });
+
                     results.push({
-                        price,
-                        img,
-                        airline,
-                        departureData,
-                        returnData
+                        Airline: airline,
+                        Departure: {
+                            Duration: departureData[2],
+                            Stop: departureData[1]
+                        },
+                        Return: {
+                            Duration: returnData[2],
+                            Stop: returnData[1]
+                        },
+                        Price: price,
                     });
                 });
                 return results;

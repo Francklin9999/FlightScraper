@@ -88,7 +88,7 @@ class Expedia extends FlightScraper {
                 return { Airline: airline, DepartureTime: departureTime, ArrivalTime: arrivalTime, Stops: stopMatch, Price: price };
               });
 
-            return { site: "Expedia", text: text_info, url: this.#url, adultNumber: this.adultNumber, class: (this.#class.charAt(0).toUpperCase() + this.#class.slice(1)) };
+            return { site: "Expedia", texts: text_info, url: this.#url, adultNumber: this.adultNumber, class: (this.#class.charAt(0).toUpperCase() + this.#class.slice(1)) };
         
             } catch (error) {
                 return null;

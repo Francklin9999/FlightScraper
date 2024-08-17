@@ -1,0 +1,159 @@
+.ContentImg {
+  width: 100%;
+  height: 600px;
+}
+
+.Content {
+  padding:0 3%;
+}
+
+.ContentRow {
+  width: 100%;
+  margin: 0 0 0 12px;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  gap: 10px;
+}
+
+.ContentInputs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  height: 50px;
+  border: 2px solid black;
+  border-radius: 8px;
+  margin: 15px 5px; 
+  padding: 10px; 
+}
+
+.ContentDates {
+  display: flex; 
+  align-items: center; 
+  justify-content: space-between; 
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 10px; 
+  font-size: 0.8rem;
+}
+
+.ContentDates .col {
+  display: flex;
+  align-items: center;     
+}
+
+.dateInputDeparture {
+  border: none;
+}
+
+.dateInputReturn {
+  border: none;
+}
+
+.separator {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  margin: 0 5px;
+  padding: 0;
+}
+
+.separatorText {
+  margin: 0;
+  padding: 0;
+  font-size: 0.8rem;
+}
+
+.separator span {
+  font-size: 20px; 
+}
+
+.submitButton {
+  display: flex;
+  justify-content: end;
+}
+
+.test {
+  border: none;
+  background-color: aqua;
+}
+
+.custom-autocomplete .MuiOutlinedInput-root {
+  padding: 0;
+  margin: 0; 
+  border: none; 
+  box-shadow: none;
+}
+
+.custom-autocomplete .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
+  border: none; 
+}
+
+.custom-autocomplete .MuiInputLabel-root {
+  margin: 0;
+  padding: 0; 
+  color: inherit; 
+}
+
+.custom-autocomplete .MuiInputBase-root {
+  padding: 0; 
+  margin: 0;
+}
+
+/* Header */
+
+.headerContent {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.headerContentItems {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  
+}
+
+.headerContentItemsTitle {
+  margin: 0;
+  font-family: 'Lobster', cursive;
+  font-size: 2.5rem;
+}
+
+.headerFranck {
+  color:black;
+}
+
+.headerFlights {
+  color: blue;
+}
+
+.headerContentItemsPhrase {
+  text-decoration: underline;
+  font-size: 1.5rem;
+  text-align: center;
+}
+
+.headerCadFlag {
+  height: 20px;
+  width: 34px;
+}
+
+.headerContentItemsCurrency {
+  gap: 20px;
+}
+
+/* Footer */
+
+.footerFooter {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 10px 10px 12px;
+}

@@ -792,8 +792,8 @@
 //     "adultNumber": 1,
 //     "class": "Economy"
 //   }
-
-  // expedia.text.info.forEach(flightInfo => {
+  
+// expedia.text.info.forEach(flightInfo => {
   //   const airlineMatch = flightInfo.match(/for (.*?) flight,/);
   //   const airline = airlineMatch ? airlineMatch[1] : "Airline not found";
   
@@ -815,3 +815,45 @@
   //   console.log(`Price: ${price}`);
   //   console.log("------------------------");
   // });
+
+
+
+//   cheapflightsFetchData = {
+//     Airline: airline,
+//     Departure: {
+//         Duration: departureData[2],
+//         Stop: departureData[1]
+//     },
+//     Return: {
+//         Duration: returnData[2],
+//         Stop: returnData[1]
+//     },
+//     Price: price,
+// }
+
+// flighthubFetchData = {
+//     Airline: {
+//         1: departureData.airline,
+//         2: returnData.airline
+//     },
+//     Departure: {
+//         Duration: departureData[2],
+//     },
+//     Return: {
+//         Duration: returnData[2],
+//         },
+//     Price: price,
+// }
+
+// skyscannerFetchData = {
+//     Airline: airline,
+//     Departure: {
+//         Duration: dataArr[0].duration,
+//         Stop: dataArr[0].stop || 'NonStop'
+//     },
+//     Return: {
+//         Duration: dataArr[1].duration,
+//         Stop: dataArr[1].stop || 'NonStop'
+//     },
+//     Price: price,
+// }

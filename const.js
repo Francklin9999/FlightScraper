@@ -1,4 +1,4 @@
-const PORT_BACKEND = 3000;
+const PORT_BACKEND = 8080;
 
 
 module.exports = {

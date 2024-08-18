@@ -857,3 +857,132 @@
 //     },
 //     Price: price,
 // }
+
+{
+  "site": "SkyScanner",
+  "texts": [
+      {
+          "Airline": "Porter Airlines (Canada) Ltd",
+          "Departure": {
+              "Duration": "1h 22",
+              "Stop": "NonStop"
+          },
+          "Return": {
+              "Duration": "1h 16",
+              "Stop": "NonStop"
+          },
+          "Price": "C$372"
+      },
+      {
+          "Airline": "Porter Airlines (Canada) Ltd",
+          "Departure": {
+              "Duration": "1h 22",
+              "Stop": "NonStop"
+          },
+          "Return": {
+              "Duration": "1h 16",
+              "Stop": "NonStop"
+          },
+          "Price": "C$361"
+      },
+      {
+          "Airline": "Air Canada",
+          "Departure": {
+              "Duration": "1h 22",
+              "Stop": "NonStop"
+          },
+          "Return": {
+              "Duration": "1h 20",
+              "Stop": "NonStop"
+          },
+          "Price": "C$395"
+      },
+      {
+          "Airline": "Porter Airlines (Canada) Ltd",
+          "Departure": {
+              "Duration": "1h 22",
+              "Stop": "NonStop"
+          },
+          "Return": {
+              "Duration": "1h 16",
+              "Stop": "NonStop"
+          },
+          "Price": "C$361"
+      },
+      {
+          "Airline": "Air Canada",
+          "Departure": {
+              "Duration": "1h 22",
+              "Stop": "NonStop"
+          },
+          "Return": {
+              "Duration": "1h 16",
+              "Stop": "NonStop"
+          },
+          "Price": "C$395"
+      },
+      {
+          "Airline": "Porter Airlines (Canada) Ltd",
+          "Departure": {
+              "Duration": "1h 22",
+              "Stop": "NonStop"
+          },
+          "Return": {
+              "Duration": "1h 15",
+              "Stop": "NonStop"
+          },
+          "Price": "C$361"
+      },
+      {
+          "Airline": "Air Canada",
+          "Departure": {
+              "Duration": "1h 22",
+              "Stop": "NonStop"
+          },
+          "Return": {
+              "Duration": "1h 16",
+              "Stop": "NonStop"
+          },
+          "Price": "C$395"
+      },
+      {
+          "Airline": "Air Canada",
+          "Departure": {
+              "Duration": "1h 22",
+              "Stop": "NonStop"
+          },
+          "Return": {
+              "Duration": "1h 16",
+              "Stop": "NonStop"
+          },
+          "Price": "C$395"
+      },
+      {
+          "Airline": "Air Canada",
+          "Departure": {
+              "Duration": "1h 22",
+              "Stop": "NonStop"
+          },
+          "Return": {
+              "Duration": "1h 16",
+              "Stop": "NonStop"
+          },
+          "Price": "C$395"
+      },
+      {
+          "Airline": "Air Canada",
+          "Departure": {
+              "Duration": "1h 22",
+              "Stop": "NonStop"
+          },
+          "Return": {
+              "Duration": "1h 16",
+              "Stop": "NonStop"
+          },
+          "Price": "C$395"
+      }
+  ],
+  "url": "https://www.skyscanner.ca/transport/vols/YUL/YYZ/20240831/20241009/?adultsv2=1&cabinclass=economy&childrenv2=&ref=home&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false",
+  "adultNumber": 1,
+  "classFlight": "economy"
+}

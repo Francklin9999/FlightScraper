@@ -90,11 +90,11 @@ class Skyscanner extends FlightScraper {
                     results.push({
                         Airline: airline,
                         Departure: {
-                            Duration: dataArr[0].duration,
+                            Duration: dataArr[0].duration || '',
                             Stop: dataArr[0].stop || 'NonStop'
                         },
                         Return: {
-                            Duration: dataArr[1].duration,
+                            Duration: dataArr[1].duration || '',
                             Stop: dataArr[1].stop || 'NonStop'
                         },
                         Price: price,
@@ -106,7 +106,7 @@ class Skyscanner extends FlightScraper {
 
             await this.#web.finalize();
 
-            return { site: "SkyScanner", texts: texts, url: this.#url, adultNumber: this.adultNumber, class: this.#class };
+            return { site: "SkyScanner", texts: texts, url: this.#url, adultNumber: this.adultNumber, classFlight: this.#class };
 
         } catch (error) {
             return null;

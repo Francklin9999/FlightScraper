@@ -1,6 +1,6 @@
 import { cheapflightsFetchData } from "@/types";
 
-export default function cheapflightComponent(props: cheapflightsFetchData) {
+export default function CheapflightComponent(props: any) {
     return (
         <div className="container">
             <div className="row">

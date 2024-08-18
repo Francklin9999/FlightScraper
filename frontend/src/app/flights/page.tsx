@@ -1,57 +1,77 @@
 "use client"
 
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import cheapflightsFetch from '@/app/components/flights/cheapflights/datafetch';
-import cheapflightComponent from '@/app/components/flights/cheapflights/cheapflights';
+import CheapflightComponent from '@/app/components/flights/cheapflights/cheapflights';
 import flighthubFetch from '@/app/components/flights/flighthub/datafetch';
-import flighthubComponent from '@/app/components/flights/flighthub/flighthub';
+import FlighthubComponent from '@/app/components/flights/flighthub/flighthub';
 import skyscannerFetch from '@/app/components/flights/skyscanner/datafetch';
-import skyscannerComponent from '@/app/components/flights/skyscanner/skyscanner;
+import SkyscannerComponent from '@/app/components/flights/skyscanner/skyscanner';
 // import from '@/app/components/flights/expedia/datafetch';
+import ExpediaComponent from '@/app/components/flights/expedia/expedia';
+import { skyscannerFetchData, flighthubFetchData, cheapflightsFetchData } from '@/types';
 import styles from './page.module.css';
 
 export default function Flights() {
     const [state, setState] = useState<any>(null);
+    const [data, setData] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
-    const [data, setData] = useState<any>('');
     const [error, setError] = useState<boolean>(false);
+    const initialStateRef = useRef<any>(null);
+    
 
     useEffect(() => {
         const storedState: any = sessionStorage.getItem('formState');
         if (storedState) {
-            setState(JSON.parse(storedState));
+            const parsedState = JSON.parse(storedState);
+            setState(parsedState);
+            initialStateRef.current = parsedState;
         } else {
             setError(true);
         }
       }, []);
     
-    const fetchData = useCallback(async () => {
-        cheapflightsFetch(state).then(
-                (response) => {
-                    setData(response);
-                    setLoading(false);
-                }
-        );
-        flighthubFetch(state).then(
-                (response) => {
-                    setData(response);
-                    setLoading(false);
-                }
-        );
+      const fetchData = useCallback(() => {
+        const handleResponse = (key: any, response: any) => {
+            console.log(response);
+            setData(prevData =>
+                [...prevData, response]);
+            setLoading(false);
+        };
+
+        // cheapflightsFetch(state).then(
+        //     (response) => handleResponse('cheapflights', response)
+        // ).catch(error => {
+        //     console.error('Error fetching cheap flights:', error);
+        // });
+    
+        // flighthubFetch(state).then(
+        //     (response) => handleResponse('flighthub', response)
+        // ).catch(error => {
+        //     console.error('Error fetching flight hub:', error);
+        // });
+    
         skyscannerFetch(state).then(
-                (response) => {
-                    setData(response);
-                    setLoading(false);
-                }
-        );
-        }, [state]);
+            (response) => {handleResponse('skyscanner', response)
+            console.log(data)}
+        ).catch(error => {
+            setError(true);
+            console.error('Error fetching Skyscanner:', error);
+        });
+    
+    }, [state]);
 
     useEffect(() => {
         const loadData = async () => {
             if (!state || Object.keys(state).length === 0) {
                 return;
             }
-            await fetchData();
+            try {
+                fetchData();
+                console.log(data)
+            } catch(error) {
+                setError(true);
+            }
         };
 
         loadData();
@@ -76,7 +96,9 @@ export default function Flights() {
 
     if(error) {
         return (
-            <div>Error</div>
+            <div className={`conatiner`}>
+                Sorry an error as occur on our end. Please try agin later!
+            </div>
         );
     };
 
@@ -101,44 +123,46 @@ export default function Flights() {
                     <div className={`col ${styles.searchInfoCols}`}>
                         <p>{state["destination"]}</p>
                     </div>
-                    <div className={`col ${styles.searchInfoCol}`}>
+                    <div className={`col ${styles.searchInfoCols}`}>
                         <p>{state["return"]}</p>
                     </div>
                 </div>
                 <div className={`row`}>
-                    <div className={`col ${styles.searchInfoCol}`}>
+                    <div className={`col ${styles.searchInfoCols}`}>
                         <p>Information:</p>
                     </div>
-                    <div className={`col ${styles.searchInfoCol}`}>
+                    <div className={`col ${styles.searchInfoCols}`}>
                         <p>Number of Adult: {state["adult"] || 1}</p>
                     </div>
-                    <div className={`col ${styles.searchInfoCol}`}>
+                    <div className={`col ${styles.searchInfoCols}`}>
                         <p>Class: {state["class"]}</p>
                     </div>
                 </div>
             </div>
             <div className={`container-fluid ${styles.searchContent}`}>
                 <div className={`row`}>
-                    <div className={`col`}>
-                        {/* {data.map((item: any, index: any) => (
-                            <div className={`container ${styles.searchResult}`} key={index}>
-                                <div className={`row ${styles.searchSite}`}>
-                                    <div className={`col`}>
-                                        <p>Price: {item['price']}</p>
-                                    </div>
-                                    <div className={`col`}>
-                                        <a href={item['url']} target="_blank" rel="noopener noreferrer">Website Link</a>
-                                    </div>
-                                </div>
-                                <div className={`row ${styles.searchParams}`}>
-                                <p>Adult: {item['adultNumber']}</p><p>Class: {item['class']}</p>
-                                </div>
-                                <div className={`row ${styles.searchLink}`}>
-                                    <p className={`${styles.searchParamsText}`}>Site: {item['site']}</p>
-                                </div>
-                            </div>
-                        ))} */}
-                    </div>
+                <div className="col">
+                    {data.length == 0 ? (
+                        <p>Nothing found</p>
+                    ) : (
+                        data.map((item: any, index: number) => {
+                            if (item === null) return;
+                            return item.map((entry: any) => {
+                                switch (entry.Site) {
+                                    case "SkyScanner":
+                                        return <SkyscannerComponent key={index} {...entry} />;
+                                    case "Flighthub":
+                                        return <FlighthubComponent key={index} {...entry} />;
+                                    case "Cheapflights":
+                                        return <CheapflightComponent key={index} {...entry} />;
+                                    case "Expedia":
+                                        return <ExpediaComponent key={index} {...entry} />;
+                                    default:
+                                        return <p>{entry.Site}</p>;
+                                }
+                            });
+                    }))}
+                </div>
                 </div>
             </div>
         </>

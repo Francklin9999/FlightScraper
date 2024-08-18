@@ -1,7 +1,7 @@
 import { flighthubFetchData } from "@/types";
 
 
-export default function flighthubComponent(props: flighthubFetchData) {
+export default function FlighthubComponent(props: any) {
     return (
         <div className="container">
             <div className="row">

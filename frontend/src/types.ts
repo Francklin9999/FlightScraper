@@ -6,16 +6,44 @@ export interface AirportData {
 }
 
 export interface skyscannerFetchData {
+    Site: string;
     Airline: string,
-    Departure: {
+    DepartureInfo: {
         Duration: string,
         Stop: string
     },
-    Return: {
+    ReturnInfo: {
         Duration: string,
         Stop: string
     },
     Price: string,
+    Url: string,
+    AdultNumber: string | number,
+    ClassFlight: string;
+}
+
+export interface skyscannerData {
+    site: string,
+    texts: [
+        {
+        price: string,
+        img: string,
+        airline: string,
+        departureData: {
+            time: string;
+            duration: string,
+            stop: string | null,
+        },
+        returnData: {
+            time: string;
+            duration: string,
+            stop: string | null,
+            },
+        }
+    ],
+    url: string,
+    adultNumber: string | number,
+    classFlight: string,
 }
 
 export interface flighthubFetchData {

@@ -9,6 +9,7 @@ import airportNames from './public/assets/airport_code.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "./page.module.css";
 import { AirportData } from '@/types';
+import { blue } from '@mui/material/colors';
 
 export default function Home() {
     const router = useRouter();
@@ -91,16 +92,6 @@ export default function Home() {
     return (
         <>
             <div>
-                <div>
-                  {/* <Image
-                    src="/assets/background.jpg"
-                    alt="Background"
-                    width={1200} 
-                    height={800}
-                    /> */}
-                    <img src="/assets/background.jpg" className={`${styles.ContentImg}`}/>
-                </div>
-
                 <form onSubmit={handleSubmit} method="get" className={`container-fluid ${styles.content}`}>
                     <div className={`row ${styles.ContentRow}`}>
                         <div className={`col-4`}>
@@ -113,13 +104,33 @@ export default function Home() {
                                 renderInput={(params) => <TextField {...params} />}
                             />
                         </div>
-                        <div className="col-4">
+                        <div className={`col-4 ${styles.Location}`}>
                             <Autocomplete
                                 onChange={handleDepartureLocation}
                                 disablePortal
                                 className={`${styles.customAutocomplete} ${styles.contentInputs}`}
                                 options={airportData}
                                 value={departureLocation}
+                                sx={{
+                                    "& .MuiInputLabel-root": {
+                                      color: "blue",
+                                    },
+                                    "& .MuiInputLabel-root.Mui-focused": {
+                                      color: "white",
+                                    },
+                                    "& + .MuiAutocomplete-popper .MuiAutocomplete-option": {
+                                      color: "blue",
+                                    },
+                                    "& + .MuiAutocomplete-popper .MuiAutocomplete-option[aria-selected='true']": {
+                                      color: "white",
+                                    },
+                                    "& + .MuiAutocomplete-popper .MuiAutocomplete-option[aria-selected ='true'] .Mui-focused": {
+                                      color: "blue",
+                                    },
+                                    "& .MuiOutlinedInput-root.Mui-focused fieldset": {
+                                      borderColor: "blue",
+                                    },
+                                  }}
                                 renderInput={(params) => <TextField {...params} label="Departure" />}
                             />
                         </div>

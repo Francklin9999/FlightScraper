@@ -11,6 +11,7 @@ import SkyscannerComponent from '@/app/components/flights/skyscanner/skyscanner'
 import ExpediaComponent from '@/app/components/flights/expedia/expedia';
 import { skyscannerFetchData, flighthubFetchData, cheapflightsFetchData } from '@/types';
 import styles from './page.module.css';
+import { isCheapflightsFetchData, isFlighthubFetchData, isSkyscannerFetchData } from '@/typeCheck';
 
 export default function Flights() {
     const [state, setState] = useState<any>(null);
@@ -39,17 +40,17 @@ export default function Flights() {
             setLoading(false);
         };
 
-        // cheapflightsFetch(state).then(
-        //     (response) => handleResponse('cheapflights', response)
-        // ).catch(error => {
-        //     console.error('Error fetching cheap flights:', error);
-        // });
+        cheapflightsFetch(state).then(
+            (response) => handleResponse('cheapflights', response)
+        ).catch(error => {
+            console.error('Error fetching cheap flights:', error);
+        });
     
-        // flighthubFetch(state).then(
-        //     (response) => handleResponse('flighthub', response)
-        // ).catch(error => {
-        //     console.error('Error fetching flight hub:', error);
-        // });
+        flighthubFetch(state).then(
+            (response) => handleResponse('flighthub', response)
+        ).catch(error => {
+            console.error('Error fetching flight hub:', error);
+        });
     
         skyscannerFetch(state).then(
             (response) => {handleResponse('skyscanner', response)
@@ -145,16 +146,23 @@ export default function Flights() {
                     {data.length == 0 ? (
                         <p>Nothing found</p>
                     ) : (
-                        data.map((item: any, index: number) => {
+                        data.map((item: [], index: number) => {
                             if (item === null) return;
-                            return item.map((entry: any) => {
+                            return item.map((entry: skyscannerFetchData | flighthubFetchData | cheapflightsFetchData) => {
                                 switch (entry.Site) {
                                     case "SkyScanner":
-                                        return <SkyscannerComponent key={index} {...entry} />;
+                                        if(isSkyscannerFetchData(entry)) {
+                                            return <SkyscannerComponent key={index} {...entry} />;
+                                        }
+                                        break;
                                     case "Flighthub":
-                                        return <FlighthubComponent key={index} {...entry} />;
+                                        if(isFlighthubFetchData(entry)) {
+                                            return <FlighthubComponent key={index} {...entry} />;
+                                        }
                                     case "Cheapflights":
-                                        return <CheapflightComponent key={index} {...entry} />;
+                                        if(isCheapflightsFetchData(entry)) {
+                                            return <CheapflightComponent key={index} {...entry} />;
+                                        }
                                     case "Expedia":
                                         return <ExpediaComponent key={index} {...entry} />;
                                     default:

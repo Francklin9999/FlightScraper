@@ -29,7 +29,7 @@ export default function SkyscannerComponent({
     Url,
     AdultNumber,
     ClassFlight,
-}: SkyscannerComponentProps) {
+}: skyscannerFetchData) {
 
     return (
         <div className={styles.skyscannerComponent}>

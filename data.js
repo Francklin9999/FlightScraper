@@ -858,131 +858,375 @@
 //     Price: price,
 // }
 
-{
-  "site": "SkyScanner",
-  "texts": [
-      {
-          "Airline": "Porter Airlines (Canada) Ltd",
-          "Departure": {
-              "Duration": "1h 22",
-              "Stop": "NonStop"
-          },
-          "Return": {
-              "Duration": "1h 16",
-              "Stop": "NonStop"
-          },
-          "Price": "C$372"
-      },
-      {
-          "Airline": "Porter Airlines (Canada) Ltd",
-          "Departure": {
-              "Duration": "1h 22",
-              "Stop": "NonStop"
-          },
-          "Return": {
-              "Duration": "1h 16",
-              "Stop": "NonStop"
-          },
-          "Price": "C$361"
-      },
-      {
-          "Airline": "Air Canada",
-          "Departure": {
-              "Duration": "1h 22",
-              "Stop": "NonStop"
-          },
-          "Return": {
-              "Duration": "1h 20",
-              "Stop": "NonStop"
-          },
-          "Price": "C$395"
-      },
-      {
-          "Airline": "Porter Airlines (Canada) Ltd",
-          "Departure": {
-              "Duration": "1h 22",
-              "Stop": "NonStop"
-          },
-          "Return": {
-              "Duration": "1h 16",
-              "Stop": "NonStop"
-          },
-          "Price": "C$361"
-      },
-      {
-          "Airline": "Air Canada",
-          "Departure": {
-              "Duration": "1h 22",
-              "Stop": "NonStop"
-          },
-          "Return": {
-              "Duration": "1h 16",
-              "Stop": "NonStop"
-          },
-          "Price": "C$395"
-      },
-      {
-          "Airline": "Porter Airlines (Canada) Ltd",
-          "Departure": {
-              "Duration": "1h 22",
-              "Stop": "NonStop"
-          },
-          "Return": {
-              "Duration": "1h 15",
-              "Stop": "NonStop"
-          },
-          "Price": "C$361"
-      },
-      {
-          "Airline": "Air Canada",
-          "Departure": {
-              "Duration": "1h 22",
-              "Stop": "NonStop"
-          },
-          "Return": {
-              "Duration": "1h 16",
-              "Stop": "NonStop"
-          },
-          "Price": "C$395"
-      },
-      {
-          "Airline": "Air Canada",
-          "Departure": {
-              "Duration": "1h 22",
-              "Stop": "NonStop"
-          },
-          "Return": {
-              "Duration": "1h 16",
-              "Stop": "NonStop"
-          },
-          "Price": "C$395"
-      },
-      {
-          "Airline": "Air Canada",
-          "Departure": {
-              "Duration": "1h 22",
-              "Stop": "NonStop"
-          },
-          "Return": {
-              "Duration": "1h 16",
-              "Stop": "NonStop"
-          },
-          "Price": "C$395"
-      },
-      {
-          "Airline": "Air Canada",
-          "Departure": {
-              "Duration": "1h 22",
-              "Stop": "NonStop"
-          },
-          "Return": {
-              "Duration": "1h 16",
-              "Stop": "NonStop"
-          },
-          "Price": "C$395"
-      }
-  ],
-  "url": "https://www.skyscanner.ca/transport/vols/YUL/YYZ/20240831/20241009/?adultsv2=1&cabinclass=economy&childrenv2=&ref=home&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false",
-  "adultNumber": 1,
-  "classFlight": "economy"
-}
+// {
+//   "site": "SkyScanner",
+//   "texts": [
+//       {
+//           "Airline": "Porter Airlines (Canada) Ltd",
+//           "Departure": {
+//               "Duration": "1h 22",
+//               "Stop": "NonStop"
+//           },
+//           "Return": {
+//               "Duration": "1h 16",
+//               "Stop": "NonStop"
+//           },
+//           "Price": "C$372"
+//       },
+//       {
+//           "Airline": "Porter Airlines (Canada) Ltd",
+//           "Departure": {
+//               "Duration": "1h 22",
+//               "Stop": "NonStop"
+//           },
+//           "Return": {
+//               "Duration": "1h 16",
+//               "Stop": "NonStop"
+//           },
+//           "Price": "C$361"
+//       },
+//       {
+//           "Airline": "Air Canada",
+//           "Departure": {
+//               "Duration": "1h 22",
+//               "Stop": "NonStop"
+//           },
+//           "Return": {
+//               "Duration": "1h 20",
+//               "Stop": "NonStop"
+//           },
+//           "Price": "C$395"
+//       },
+//       {
+//           "Airline": "Porter Airlines (Canada) Ltd",
+//           "Departure": {
+//               "Duration": "1h 22",
+//               "Stop": "NonStop"
+//           },
+//           "Return": {
+//               "Duration": "1h 16",
+//               "Stop": "NonStop"
+//           },
+//           "Price": "C$361"
+//       },
+//       {
+//           "Airline": "Air Canada",
+//           "Departure": {
+//               "Duration": "1h 22",
+//               "Stop": "NonStop"
+//           },
+//           "Return": {
+//               "Duration": "1h 16",
+//               "Stop": "NonStop"
+//           },
+//           "Price": "C$395"
+//       },
+//       {
+//           "Airline": "Porter Airlines (Canada) Ltd",
+//           "Departure": {
+//               "Duration": "1h 22",
+//               "Stop": "NonStop"
+//           },
+//           "Return": {
+//               "Duration": "1h 15",
+//               "Stop": "NonStop"
+//           },
+//           "Price": "C$361"
+//       },
+//       {
+//           "Airline": "Air Canada",
+//           "Departure": {
+//               "Duration": "1h 22",
+//               "Stop": "NonStop"
+//           },
+//           "Return": {
+//               "Duration": "1h 16",
+//               "Stop": "NonStop"
+//           },
+//           "Price": "C$395"
+//       },
+//       {
+//           "Airline": "Air Canada",
+//           "Departure": {
+//               "Duration": "1h 22",
+//               "Stop": "NonStop"
+//           },
+//           "Return": {
+//               "Duration": "1h 16",
+//               "Stop": "NonStop"
+//           },
+//           "Price": "C$395"
+//       },
+//       {
+//           "Airline": "Air Canada",
+//           "Departure": {
+//               "Duration": "1h 22",
+//               "Stop": "NonStop"
+//           },
+//           "Return": {
+//               "Duration": "1h 16",
+//               "Stop": "NonStop"
+//           },
+//           "Price": "C$395"
+//       },
+//       {
+//           "Airline": "Air Canada",
+//           "Departure": {
+//               "Duration": "1h 22",
+//               "Stop": "NonStop"
+//           },
+//           "Return": {
+//               "Duration": "1h 16",
+//               "Stop": "NonStop"
+//           },
+//           "Price": "C$395"
+//       }
+//   ],
+//   "url": "https://www.skyscanner.ca/transport/vols/YUL/YYZ/20240831/20241009/?adultsv2=1&cabinclass=economy&childrenv2=&ref=home&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false",
+//   "adultNumber": 1,
+//   "classFlight": "economy"
+// }
+
+
+// {
+//   site: 'Expedia',
+//   texts: [
+//     {
+//       Airline: 'Royal Air Maroc',
+//       DepartureTime: '8:35 PM',
+//       ArrivalTime: '3:05 AM',
+//       Stops: 'One stop',
+//       Price: 'CA $1,934'
+//     },
+//     {
+//       Airline: 'Royal Air Maroc',
+//       DepartureTime: '9:25 AM',
+//       ArrivalTime: '3:05 AM',
+//       Stops: 'One stop',
+//       Price: 'CA $1,934'
+//     },
+//     {
+//       Airline: 'Air Algerie',
+//       DepartureTime: '3:10 PM',
+//       ArrivalTime: '1:05 AM',
+//       Stops: 'One stop',
+//       Price: 'CA $2,339'
+//     },
+//     {
+//       Airline: 'multipleAirlines',
+//       DepartureTime: '6:55 PM',
+//       ArrivalTime: '6:40 PM',
+//       Stops: 'One stop',
+//       Price: 'CA $3,885'
+//     },
+//     {
+//       Airline: 'Brussels Airlines',
+//       DepartureTime: '6:55 PM',
+//       ArrivalTime: '6:40 PM',
+//       Stops: 'One stop',
+//       Price: 'CA $3,688'
+//     },
+//     {
+//       Airline: 'Air Canada',
+//       DepartureTime: '4:50 PM',
+//       ArrivalTime: '6:40 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $2,894'
+//     },
+//     {
+//       Airline: 'Swiss International Air Lines',
+//       DepartureTime: '4:50 PM',
+//       ArrivalTime: '6:40 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $2,894'
+//     },
+//     {
+//       Airline: 'Swiss International Air Lines',
+//       DepartureTime: '4:50 PM',
+//       ArrivalTime: '6:40 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $2,894'
+//     },
+//     {
+//       Airline: 'Rwandair',
+//       DepartureTime: '8:50 PM',
+//       ArrivalTime: '10:50 AM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $2,586'
+//     },
+//     {
+//       Airline: 'Delta',
+//       DepartureTime: '11:05 PM',
+//       ArrivalTime: '9:20 PM',
+//       Stops: 'One stop',
+//       Price: 'CA $5,857'
+//     },
+//     {
+//       Airline: 'Delta',
+//       DepartureTime: '7:05 PM',
+//       ArrivalTime: '9:20 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $3,103'
+//     },
+//     {
+//       Airline: 'multipleAirlines',
+//       DepartureTime: '6:55 PM',
+//       ArrivalTime: '9:20 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $3,146'
+//     },
+//     {
+//       Airline: 'multipleAirlines',
+//       DepartureTime: '7:00 AM',
+//       ArrivalTime: '11:35 AM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $3,215'
+//     },
+//     {
+//       Airline: 'multipleAirlines',
+//       DepartureTime: '6:00 AM',
+//       ArrivalTime: '11:35 AM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $3,215'
+//     },
+//     {
+//       Airline: 'multipleAirlines',
+//       DepartureTime: '9:15 AM',
+//       ArrivalTime: '6:40 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $2,900'
+//     },
+//     {
+//       Airline: 'multipleAirlines',
+//       DepartureTime: '6:00 AM',
+//       ArrivalTime: '6:40 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $2,900'
+//     },
+//     {
+//       Airline: 'Air France',
+//       DepartureTime: '7:05 PM',
+//       ArrivalTime: '9:20 PM',
+//       Stops: 'One stop',
+//       Price: 'CA $5,476'
+//     },
+//     {
+//       Airline: 'multipleAirlines',
+//       DepartureTime: '12:45 PM',
+//       ArrivalTime: '9:20 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $3,146'
+//     },
+//     {
+//       Airline: 'multipleAirlines',
+//       DepartureTime: '12:42 PM',
+//       ArrivalTime: '9:20 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $3,146'
+//     },
+//     {
+//       Airline: 'multipleAirlines',
+//       DepartureTime: '12:45 PM',
+//       ArrivalTime: '9:20 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $3,146'
+//     },
+//     {
+//       Airline: 'multipleAirlines',
+//       DepartureTime: '10:15 PM',
+//       ArrivalTime: '11:50 AM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $3,215'
+//     },
+//     {
+//       Airline: 'multipleAirlines',
+//       DepartureTime: '7:25 AM',
+//       ArrivalTime: '9:20 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $3,146'
+//     },
+//     {
+//       Airline: 'multipleAirlines',
+//       DepartureTime: '4:30 PM',
+//       ArrivalTime: '11:50 AM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $3,215'
+//     },
+//     {
+//       Airline: 'Air Canada',
+//       DepartureTime: '8:10 PM',
+//       ArrivalTime: '6:40 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $3,135'
+//     },
+//     {
+//       Airline: 'Air Canada',
+//       DepartureTime: '7:15 PM',
+//       ArrivalTime: '6:40 PM',
+//       Stops: 'Stop information not found',
+//       Price: 'CA $3,189'
+//     }
+//   ],
+//   url: 'https://www.expedia.ca/Flights-Search?flight-type=on&mode=search&trip=roundtrip&leg1=from:YUL,to:DLA,departure:18/12/2024TANYT,fromType:U,toType:U&leg2=from:DLA,to:YUL,departure:10/01/2025TANYT,fromType:U,toType:U&options=cabinclass:economy&fromDate=18/12/2024&toDate=10/01/2025&d1=2024-12-18&d2=2025-01-10&passengers=adults:1,infantinlap:N',
+//   adultNumber: 1,
+//   class: 'Economy'
+// }
+
+// {
+//   site: 'Cheapflights',
+//   texts: [
+//     {
+//       Airline: 'Royal Air Maroc',
+//       Departure: {},
+//       Return: {},
+//       Price: 'C$ 1,853'
+//     },
+//     {
+//       Airline: 'Royal Air Maroc',
+//       Departure: {},
+//       Return: {},
+//       Price: 'C$ 1,853'
+//     },
+//     {
+//       Airline: 'RwandAir',
+//       Departure: {},
+//       Return: {},
+//       Price: 'C$ 2,585'
+//     },
+//     {
+//       Airline: 'United Airlines',
+//       Departure: {},
+//       Return: {},
+//       Price: 'C$ 2,900'
+//     },
+//     {
+//       Airline: 'United Airlines',
+//       Departure: {},
+//       Return: {},
+//       Price: 'C$ 2,900'
+//     },
+//     {
+//       Airline: 'Air Algerie',
+//       Departure: {},
+//       Return: {},
+//       Price: 'C$ 2,933'
+//     },
+//     { Airline: 'SWISS', Departure: {}, Return: {}, Price: 'C$ 2,982' },
+//     { Airline: 'SWISS', Departure: {}, Return: {}, Price: 'C$ 2,982' },
+//     { Airline: 'SWISS', Departure: {}, Return: {}, Price: 'C$ 2,982' },
+//     { Airline: 'SWISS', Departure: {}, Return: {}, Price: 'C$ 2,982' },
+//     { Airline: 'SWISS', Departure: {}, Return: {}, Price: 'C$ 2,982' },
+//     { Airline: 'SWISS', Departure: {}, Return: {}, Price: 'C$ 2,982' },
+//     { Airline: 'SWISS', Departure: {}, Return: {}, Price: 'C$ 2,982' },
+//     { Airline: 'SWISS', Departure: {}, Return: {}, Price: 'C$ 2,982' },
+//     {
+//       Airline: 'Air Canada',
+//       Departure: {},
+//       Return: {},
+//       Price: 'C$ 2,985'
+//     }
+//   ],
+//   url: 'https://www.cheapflights.ca/flight-search/YUL-DLA/2024-12-18/2025-01-10economy?sort=price_a',
+//   adultNumber: 1,
+//   class: 'economy'
+// }

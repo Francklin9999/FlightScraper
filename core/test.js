@@ -151,7 +151,7 @@ async function main() {
 
     // Expedia(data2).then(response => console.log(response));
     // Flighthub(data2).then(response => console.log(response));
-    SkyScanner(data2).then(response => console.log(response));
+    SkyScanner(data1).then(response => console.log(response));
     // Cheapflights(data2).then(response => console.log(response));
 };
 

@@ -63,6 +63,7 @@ class Skyscanner extends FlightScraper {
 
             await this.#web.goTo({ waitUntil:'networkidle2' });
 
+            await this.#web.waitDelay(10000)
             // await this.#web.page.waitForSelector('.TimeWithOffsetTooltip_timeComplex__YTBlO');
 
             const texts = await this.#web.page.evaluate(() => {

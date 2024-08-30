@@ -9,6 +9,7 @@ async function flighthubHandler(req, res) {
         }
 
         const result = await Flighthub(transformParameters(data));
+        console.log(result);
         res.json(result);
     } catch (error) {
         console.error('Error processing Flighthub function:', error);

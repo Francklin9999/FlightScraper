@@ -63,53 +63,56 @@ class Cheapflights extends FlightScraper {
 
             await this.#web.launchBrowser({ headless:this.headless, viewPort:false });
 
-            await this.#web.defaultRoute();
+            // await this.#web.defaultRoute();
 
             await this.#web.goTo({ waitUntil:'networkidle2' });
 
             const texts = await this.#web.page.evaluate(() => {
                 const results = [];
-                document.querySelectorAll('.nrc6-inner').forEach((element) => {
-                    const price = element.querySelector('.f8F1-price-text') ? element.querySelector('.f8F1-price-text').textContent.trim() : '';
-                    const img = element.querySelector('img') ? element.querySelector('img').getAttribute('src') : '';
-                    const airline = element.querySelector('img') ? element.querySelector('img').getAttribute('alt') : '';
-        
-                    const data = Array.from(element.querySelectorAll('.c3J0r-container')).map(container => {
-                        const time = container.querySelector('.vmXl.vmXl-mod-variant-large') ? container.querySelector('.vmXl.vmXl-mod-variant-large').textContent.trim() : '';
-                        const duration = Array.from(container.querySelectorAll('.vmXl.vmXl-mod-variant-default')).map(d => d.textContent.trim());
-        
-                        return {
-                            time,
-                            stop: duration[0] || '',
-                            duration: duration[1] || ''
-                        };
-                    });
-        
-                    const departureData = data[0] || { time: '', stop: '', duration: '' };
-                    const returnData = data[1] || { time: '', stop: '', duration: '' };
-        
-                    // results.push({
-                    //     price,
-                    //     img,
-                    //     airline,
-                    //     departureData,
-                    //     returnData
-                    // });
 
-                    results.push({
-                        Airline: airline,
-                        Departure: {
-                            Duration: departureData[2],
-                            Stop: departureData[1]
-                        },
-                        Return: {
-                            Duration: returnData[2],
-                            Stop: returnData[1]
-                        },
-                        Price: price,
+            document.querySelectorAll('.nrc6-inner').forEach(function (element) {
+                const priceElement = element.querySelector('.f8F1-price-text');
+                const price = priceElement ? priceElement.textContent.trim() : '';
+
+                const imgElement = element.querySelector('img');
+                const img = imgElement ? imgElement.getAttribute('src') : '';
+                const airline = imgElement ? imgElement.getAttribute('alt') : '';
+
+                const data = Array.from(element.querySelectorAll('.c3J0r-container')).map(function (container) {
+                    const timeElement = container.querySelector('.vmXl.vmXl-mod-variant-large');
+                    const time = timeElement ? timeElement.textContent.trim() : '';
+
+                    const durationElements = Array.from(container.querySelectorAll('.vmXl.vmXl-mod-variant-default'));
+                    const duration = durationElements.map(function (d) {
+                        return d.textContent.trim();
                     });
+
+                    return {
+                        time: time,
+                        stop: duration[0] || '',
+                        duration: duration[1] || ''
+                    };
                 });
-                return results;
+
+                const departureData = data[0] || { time: '', stop: '', duration: '' };
+                const returnData = data[1] || { time: '', stop: '', duration: '' };
+
+                results.push({
+                    Airline: airline,
+                    Departure: {
+                        Duration: departureData.duration,
+                        Stop: departureData.stop
+                    },
+                    Return: {
+                        Duration: returnData.duration,
+                        Stop: returnData.stop
+                    },
+                    Price: price,
+                });
+            });
+
+            return results;
+
             });
 
             await this.#web.finalize();

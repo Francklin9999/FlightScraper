@@ -1,10 +1,10 @@
-const WebScraping = require('../modal');
+const WebScraping = require('../webScraping');
 
 async function main() {
 
 const web = new WebScraping({delay: 1111, url: 'https://bot.sannysoft.com/'});
 
-await web.launchBrowser(false, false);
+await web.launchBrowser({ headless: false });
 
 await web.newPage();
 

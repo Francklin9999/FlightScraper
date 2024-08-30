@@ -73,8 +73,8 @@ export interface flighthubData {
 }
 
 export interface flighthubTextsData {
-    price: string,
-    departureData: {
+    Airline?: any[], //TODO 
+    Departure: {
         img: string,
         airline: string,
         duration: string,
@@ -86,6 +86,7 @@ export interface flighthubTextsData {
         duration: string,
         combinedTime: string,
     },
+    Price: string,
 }
 
 export interface cheapflightsFetchData {

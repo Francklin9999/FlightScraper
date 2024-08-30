@@ -15,7 +15,7 @@ class FlightScraper {
         this.adultNumber = data["adult"] || 1;
         this.class= data["class"] || "economy";
         this.oneWay = data["oneWay"] || null;
-        this.headless = data["headless"] || true;
+        this.headless = data["headless"] || false;
         this.delay = data["delay"] || 3333;
 
     }

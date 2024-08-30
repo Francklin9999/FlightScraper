@@ -160,388 +160,89 @@
 //   }
 
 // const flighthub = {
-//     "site": "Flighthub",
-//     "texts": [
-//         {
-//             "price": "CAD 297.73",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/UAx2.png",
-//                 "airline": "United Airlines",
-//                 "duration": "1h 57m",
-//                 "combinedTime": "7:30pm-9:27pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/UAx2.png",
-//                 "airline": "United Airlines",
-//                 "duration": "1h 27m",
-//                 "combinedTime": "10:05am-11:32am"
-//             }
-//         },
-//         {
-//             "price": "CAD 336.97",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 57m",
-//                 "combinedTime": "7:30pm-9:27pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 27m",
-//                 "combinedTime": "10:05am-11:32am"
-//             }
-//         },
-//         {
-//             "price": "CAD 376.97",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 24m",
-//                 "combinedTime": "1:10pm-2:34pm-8:30pm-10:20pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 27m",
-//                 "combinedTime": "10:05am-11:32am"
-//             }
-//         },
-//         {
-//             "price": "CAD 439.97",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 24m",
-//                 "combinedTime": "10:10am-11:34am-1:15pm-3:00pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 27m",
-//                 "combinedTime": "10:05am-11:32am"
-//             }
-//         },
-//         {
-//             "price": "CAD 439.97",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 24m",
-//                 "combinedTime": "9:10am-10:34am-1:15pm-3:00pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 27m",
-//                 "combinedTime": "10:05am-11:32am"
-//             }
-//         },
-//         {
-//             "price": "CAD 439.97",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "0h 45m",
-//                 "combinedTime": "7:55am-8:40am-9:20am-10:28am-1:15pm-3:00pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 27m",
-//                 "combinedTime": "10:05am-11:32am"
-//             }
-//         },
-//         {
-//             "price": "CAD 439.97",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 24m",
-//                 "combinedTime": "8:10am-9:34am-1:15pm-3:00pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 27m",
-//                 "combinedTime": "10:05am-11:32am"
-//             }
-//         },
-//         {
-//             "price": "CAD 454.97",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "0h 45m",
-//                 "combinedTime": "8:40am-9:25am-10:00am-11:08am-1:15pm-3:00pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 27m",
-//                 "combinedTime": "10:05am-11:32am"
-//             }
-//         },
-//         {
-//             "price": "CAD 454.97",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "0h 45m",
-//                 "combinedTime": "7:55am-8:40am-10:00am-11:08am-1:15pm-3:00pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 27m",
-//                 "combinedTime": "10:05am-11:32am"
-//             }
-//         },
-//         {
-//             "price": "CAD 498.07",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 45m",
-//                 "combinedTime": "12:20pm-2:05pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h 10m",
-//                 "combinedTime": "6:10pm-8:20pm-9:15pm-11:00pm"
-//             }
-//         },
-//         {
-//             "price": "CAD 498.07",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 46m",
-//                 "combinedTime": "3:13pm-4:59pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h 10m",
-//                 "combinedTime": "6:10pm-8:20pm-9:15pm-11:00pm"
-//             }
-//         },
-//         {
-//             "price": "CAD 505.77",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h 1m",
-//                 "combinedTime": "6:00am-8:01am-10:05am-12:00pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h 10m",
-//                 "combinedTime": "6:10pm-8:20pm-9:15pm-11:00pm"
-//             }
-//         },
-//         {
-//             "price": "CAD 505.77",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h",
-//                 "combinedTime": "4:20pm-6:20pm-9:25pm-11:19pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h 10m",
-//                 "combinedTime": "6:10pm-8:20pm-9:15pm-11:00pm"
-//             }
-//         },
-//         {
-//             "price": "CAD 554.50",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 45m",
-//                 "combinedTime": "12:20pm-2:05pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 52m",
-//                 "combinedTime": "1:50pm-3:42pm-11:15pm-12:40am"
-//             }
-//         },
-//         {
-//             "price": "CAD 554.50",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 46m",
-//                 "combinedTime": "3:13pm-4:59pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 52m",
-//                 "combinedTime": "1:50pm-3:42pm-11:15pm-12:40am"
-//             }
-//         },
-//         {
-//             "price": "CAD 554.50",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 45m",
-//                 "combinedTime": "12:20pm-2:05pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 47m",
-//                 "combinedTime": "8:30am-10:17am-11:15pm-12:40am"
-//             }
-//         },
-//         {
-//             "price": "CAD 554.50",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 46m",
-//                 "combinedTime": "3:13pm-4:59pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 47m",
-//                 "combinedTime": "8:30am-10:17am-11:15pm-12:40am"
-//             }
-//         },
-//         {
-//             "price": "CAD 562.20",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h 1m",
-//                 "combinedTime": "6:00am-8:01am-10:05am-12:00pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 52m",
-//                 "combinedTime": "1:50pm-3:42pm-11:15pm-12:40am"
-//             }
-//         },
-//         {
-//             "price": "CAD 562.20",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h",
-//                 "combinedTime": "4:20pm-6:20pm-9:25pm-11:19pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 52m",
-//                 "combinedTime": "1:50pm-3:42pm-11:15pm-12:40am"
-//             }
-//         },
-//         {
-//             "price": "CAD 562.20",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h 1m",
-//                 "combinedTime": "6:00am-8:01am-10:05am-12:00pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 47m",
-//                 "combinedTime": "8:30am-10:17am-11:15pm-12:40am"
-//             }
-//         },
-//         {
-//             "price": "CAD 562.20",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h",
-//                 "combinedTime": "4:20pm-6:20pm-9:25pm-11:19pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 47m",
-//                 "combinedTime": "8:30am-10:17am-11:15pm-12:40am"
-//             }
-//         },
-//         {
-//             "price": "CAD 575.77",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 45m",
-//                 "combinedTime": "12:20pm-2:05pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h",
-//                 "combinedTime": "7:30am-9:30am-10:11am-11:58am"
-//             }
-//         },
-//         {
-//             "price": "CAD 575.77",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "1h 46m",
-//                 "combinedTime": "3:13pm-4:59pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h",
-//                 "combinedTime": "7:30am-9:30am-10:11am-11:58am"
-//             }
-//         },
-//         {
-//             "price": "CAD 575.97",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 24m",
-//                 "combinedTime": "2:10pm-3:34pm-8:30pm-10:20pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/ACx2.png",
-//                 "airline": "Air Canada",
-//                 "duration": "1h 27m",
-//                 "combinedTime": "10:05am-11:32am"
-//             }
-//         },
-//         {
-//             "price": "CAD 583.47",
-//             "departureData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h 1m",
-//                 "combinedTime": "6:00am-8:01am-10:05am-12:00pm"
-//             },
-//             "returnData": {
-//                 "img": "https://cf-assets.flighthub.com/images/suppliersx2/WSx2.png",
-//                 "airline": "Westjet",
-//                 "duration": "2h",
-//                 "combinedTime": "7:30am-9:30am-10:11am-11:58am"
-//             }
+//   "site": "Flighthub",
+//   "texts": [
+//     {
+//       "Airline": { "1": "Royal Air Maroc", "2": "Royal Air Maroc" },
+//       "Departure": { "Duration": "6h 35m" },
+//       "Return": {
+//         "Duration": {
+//           "img": "https://cf-assets.flighthub.com/images/suppliersx2/ATx2.png",
+//           "airline": "Royal Air Maroc",
+//           "duration": "9h 10m (stopover)",
+//           "combinedTime": "4:05am-1:15pm-4:55pm-6:35pm"
 //         }
-//     ],
-//     "url": "https://www.flighthub.com/flight/search?num_adults=1&num_children=0&num_infants=0&num_infants_lap=0&seat_class=economy&type=roundtrip&campaign=1&seg0_from=YUL&seg0_to=JFK&seg0_date=2024-10-09&seg1_date=2024-11-09&seg1_from=JFK&seg1_to=YUL",
-//     "adultNumber": 1,
-//     "class": "economy"
-//   }
+//       },
+//       "Price": "CAD 2,211.97"
+//     },
+//     {
+//       "Airline": { "1": "Air Algerie", "2": "Rwandair Express" },
+//       "Departure": { "Duration": "7h 50m" },
+//       "Return": {
+//         "Duration": {
+//           "img": "https://cf-assets.flighthub.com/images/suppliersx2/WBx2.png",
+//           "airline": "Rwandair Express",
+//           "duration": "3h 20m",
+//           "combinedTime": "5:10pm-9:30pm-11:00pm-6:00am-8:25am-2:05pm"
+//         }
+//       },
+//       "Price": "CAD 2,446.35"
+//     },
+//     {
+//       "Airline": { "1": "Air Algerie", "2": "Kenya Airways" },
+//       "Departure": { "Duration": "7h 50m" },
+//       "Return": {
+//         "Duration": {
+//           "img": "https://cf-assets.flighthub.com/images/suppliersx2/KQx2.png",
+//           "airline": "Kenya Airways",
+//           "duration": "4h 20m",
+//           "combinedTime": "10:40am-5:00pm-11:35pm-6:35am-8:40pm-10:12pm"
+//         }
+//       },
+//       "Price": "CAD 2,670.47"
+//     },
+//     {
+//       "Airline": { "1": "Rwandair Express", "2": "Rwandair Express" },
+//       "Departure": { "Duration": "12h 10m" },
+//       "Return": {
+//         "Duration": {
+//           "img": "https://cf-assets.flighthub.com/images/suppliersx2/WBx2.png",
+//           "airline": "Rwandair Express",
+//           "duration": "3h 20m",
+//           "combinedTime": "5:10pm-9:30pm-4:20pm-11:20pm-8:25am-2:05pm"
+//         }
+//       },
+//       "Price": "CAD 2,735.71"
+//     },
+//     {
+//       "Airline": { "1": "Air Canada", "2": "United Airlines" },
+//       "Departure": { "Duration": "7h 25m" },
+//       "Return": {
+//         "Duration": {
+//           "img": "https://cf-assets.flighthub.com/images/suppliersx2/UAx2.png",
+//           "airline": "United Airlines",
+//           "duration": "9h 10m (stopover)",
+//           "combinedTime": "7:55pm-5:05am-10:35am-1:20pm-8:40pm-10:12pm"
+//         }
+//       },
+//       "Price": "CAD 2,891.41"
+//     },
+//     {
+//       "Airline": { "1": "Swiss International Air Lines", "2": "Brussels Airlines" },
+//       "Departure": { "Duration": "7h 25m" },
+//       "Return": {
+//         "Duration": {
+//           "img": "https://cf-assets.flighthub.com/images/suppliersx2/SNx2.png",
+//           "airline": "Brussels Airlines",
+//           "duration": "9h 10m (stopover)",
+//           "combinedTime": "7:55pm-5:05am-6:15pm-8:00pm-10:40am-1:55pm"
+//         }
+//       },
+//       "Price": "CAD 2,882.21"
+//     }
+//   ]
+// }
+
 
 // const cheapflights = {
 //     "site": "Cheapflights",

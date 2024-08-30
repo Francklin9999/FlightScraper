@@ -59,7 +59,7 @@ class Skyscanner extends FlightScraper {
 
             await this.#web.launchBrowser({ headless:this.headless, viewPort:false });
 
-            await this.#web.defaultRoute();
+            // await this.#web.defaultRoute();
 
             await this.#web.goTo({ waitUntil:'networkidle2' });
 

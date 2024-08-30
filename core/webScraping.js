@@ -1,5 +1,7 @@
 const puppeteer = require('puppeteer-extra');
-const StealthPlugin = require('puppeteer-extra-plugin-stealth')
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+
+puppeteer.use(StealthPlugin());
 
 class WebScraping {
 
@@ -45,11 +47,11 @@ class WebScraping {
         }
     }
 
-    async launchBrowser({ headless=true, viewPort={ width: 1280, height: 800 } } = {}) {
-        puppeteer.use(StealthPlugin());
+    async launchBrowser({ headless=true, viewPort=null } = {}) {
         try {
             this.browser = await puppeteer.launch({
                 headless: headless,
+                slowMo: 10,
                 args: ['--no-sandbox'],
                 defaultViewport: viewPort,
             });

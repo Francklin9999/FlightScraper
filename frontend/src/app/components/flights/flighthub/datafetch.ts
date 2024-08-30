@@ -3,7 +3,7 @@
 import { flighthubData, flighthubFetchData, flighthubTextsData } from "@/types";
 
 export default async function flighthubFetch(params: any) {
-    const url = 'https://localhost:3000/api/flighthub';
+    const url = 'http://localhost:8080/api/flighthub';
     try {
         const queryParams = new URLSearchParams(params as any).toString();
         const response = await fetch(`${url}?${queryParams}`);

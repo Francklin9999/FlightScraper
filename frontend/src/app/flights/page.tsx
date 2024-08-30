@@ -40,11 +40,11 @@ export default function Flights() {
             setLoading(false);
         };
 
-        cheapflightsFetch(state).then(
-            (response) => handleResponse('cheapflights', response)
-        ).catch(error => {
-            console.error('Error fetching cheap flights:', error);
-        });
+        // cheapflightsFetch(state).then(
+        //     (response) => handleResponse('cheapflights', response)
+        // ).catch(error => {
+        //     console.error('Error fetching cheap flights:', error);
+        // });
     
         flighthubFetch(state).then(
             (response) => handleResponse('flighthub', response)
@@ -52,13 +52,12 @@ export default function Flights() {
             console.error('Error fetching flight hub:', error);
         });
     
-        skyscannerFetch(state).then(
-            (response) => {handleResponse('skyscanner', response)
-            console.log(data)}
-        ).catch(error => {
-            setError(true);
-            console.error('Error fetching Skyscanner:', error);
-        });
+        // skyscannerFetch(state).then(
+        //     (response) => {handleResponse('skyscanner', response)
+        //     console.log(data)}
+        // ).catch(error => {
+        //     console.error('Error fetching Skyscanner:', error);
+        // });
     
     }, [state]);
 

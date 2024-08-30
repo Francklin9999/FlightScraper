@@ -22,7 +22,8 @@ const data2 = {
     "return" : ["10", "01", "2025"],
     "adults" : 1,
     "class" : "economy",
-    "headless" : true,
+    "headless" : false,
+    "delay" : 10000,
 };
 
 const data3 = {
@@ -150,8 +151,8 @@ async function main() {
     // // console.log(await web4.Scrape());
 
     // Expedia(data2).then(response => console.log(response));
-    // Flighthub(data2).then(response => console.log(response));
-    SkyScanner(data1).then(response => console.log(response));
+    Flighthub(data2).then(response => console.log(JSON.stringify(response)));
+    // SkyScanner(data2).then(response => console.log(response));
     // Cheapflights(data2).then(response => console.log(response));
 };
 

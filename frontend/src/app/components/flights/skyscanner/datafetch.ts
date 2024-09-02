@@ -1,13 +1,15 @@
 "use client"
 
 import { skyscannerData, skyscannerFetchData, skyscannerTextsData } from "@/types";
+import { skyscannerData as testData } from '../../../../../../testData.js';
 
 export default async function skyscannerFetch(params: any) {
     const url = 'http://localhost:8080/api/skyscanner';
     try {
-        const queryParams = new URLSearchParams(params as any).toString();
-        const response = await fetch(`${url}?${queryParams}`);
-        const data: any = await response.json();
+        // const queryParams = new URLSearchParams(params as any).toString();
+        // const response = await fetch(`${url}?${queryParams}`);
+        // const data: any = await response.json();
+        const data: any = JSON.parse(JSON.stringify(testData))
         const skyscannerData : skyscannerFetchData[] = transformData(data);
         return skyscannerData;
     } catch(error) {
@@ -19,10 +21,10 @@ export default async function skyscannerFetch(params: any) {
 function transformData(data: skyscannerData): skyscannerFetchData[] {
     return data.texts.map((flight: skyscannerTextsData) => {
         const site = data.site;
-        const airline = flight.airline;
-        const departureInfo = [flight.departureData.duration, flight.departureData.stop]; 
-        const returnInfo = [flight.returnData.duration, flight.returnData.stop]; 
-        const price = flight.price; 
+        const airline = flight.Airline;
+        const departureInfo = [flight.Departure.Duration, flight.Departure.Stop]; 
+        const returnInfo = [flight.Return.Duration, flight.Return.Stop]; 
+        const price = flight.Price; 
         const url = data.url;
         const adultNumber = data.adultNumber;
         const classFlight = data.classFlight;

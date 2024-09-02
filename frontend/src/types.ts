@@ -31,19 +31,19 @@ export interface skyscannerData {
 }
 
 export interface skyscannerTextsData {
-        price: string,
+        Price: string,
         img: string,
-        airline: string,
-        departureData: {
+        Airline: string | "helllo",
+        Departure: {
             time: string;
-            duration: string,
-            stop: string,
+            Duration: string,
+            Stop: string,
         },
-        returnData: {
+        Return: {
             time: string;
-            duration: string,
-            stop: string,
-            },
+            Duration: string,
+            Stop: string,
+        },
 }
 
 export interface flighthubFetchData {

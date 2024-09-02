@@ -6,7 +6,7 @@
 .content {
   width: 100%;
   height: 100vh;
-  padding:0 3%;
+  padding:0 3% 30px 3%;
   background-image: url('../../public/assets/background.jpg');
   background-size: cover;
   background-position: center;
@@ -16,6 +16,19 @@
   flex-direction: column;
   justify-content: end;
   gap: 30px;
+}
+
+.contentText {
+  height: 100%;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
+
+.contentTextContent {
+  background-color: rgba(73, 93, 227, 0.4);
+  padding: 12px;
+  border-radius: 12px;
 }
 
 .contentRow {
@@ -154,6 +167,30 @@
 
 .submitButton:hover svg path {
   fill: #1f2937;
+}
+
+.submitButton:disabled,
+.submitButton:disabled:hover {
+  color: #9ca3af; 
+  cursor: not-allowed;
+  box-shadow: none; 
+  background-color: #e5e7eb; 
+}
+
+.submitButton:disabled::before {
+  transition: none; 
+  left: -100%;
+  background-color: #e5e7eb;
+}
+
+.submitButton:disabled svg {
+  transform: none;
+  background-color: #e5e7eb; 
+  border: 1px solid #d1d5db; 
+}
+
+.submitButton:disabled svg path {
+  fill: #6b7280; 
 }
 
 

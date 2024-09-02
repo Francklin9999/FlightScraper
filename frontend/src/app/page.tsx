@@ -9,24 +9,23 @@ import airportNames from './public/assets/airport_code.json';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from "./page.module.css";
 import { AirportData } from '@/types';
-import { blue } from '@mui/material/colors';
 
 export default function Home() {
     const sx = {
         "& .MuiInputLabel-root": {
-            color: "grey", // Text color for the label
+            color: "black", // Text color for the label
         },
         "& .MuiInputLabel-root.Mui-focused": {
-            color: "grey", // Text color for the focused label
+            color: "black", // Text color for the focused label
         },
         "& + .MuiAutocomplete-popper .MuiAutocomplete-option": {
-            color: "grey", // Text color for options in the dropdown
+            color: "black", // Text color for options in the dropdown
         },
         "& + .MuiAutocomplete-popper .MuiAutocomplete-option[aria-selected='true']": {
-            color: "grey", // Text color for selected options
+            color: "black", // Text color for selected options
         },
         "& + .MuiAutocomplete-popper .MuiAutocomplete-option[aria-selected='true'] .Mui-focused": {
-            color: "grey", // Text color for focused selected options
+            color: "black", // Text color for focused selected options
         },
         "& .MuiOutlinedInput-root.Mui-focused fieldset": {
             borderColor: "blue",
@@ -38,10 +37,10 @@ export default function Home() {
         "& .MuiOutlinedInput-root": {
             backgroundColor: "white", // Background color for the input field
             borderRadius: "12px", // Border radius for the input field
-            color: "grey", // Text color for the input field
+            color: "black", // Text color for the input field
         },
         "& .MuiOutlinedInput-root .MuiOutlinedInput-input": {
-            color: "grey", // Text color for the input text
+            color: "black", // Text color for the input text
         },
     };
     
@@ -63,6 +62,8 @@ export default function Home() {
 
     const adultsNumber = ["1 Adult", "2 Adult", "3 Adult", "4 Adult"];
     const [selectedAdultsNumber, setSelectedAdultsNumber] = useState<string | null>(adultsNumber[0]);
+
+    const isButtonDisabled = !departureLocation || !arrivalLocation || !selectedDepatureDate || !selectedReturnDate || !selectedTripTypeOption || !selectedClassOption || !selectedAdultsNumber;
 
     useEffect(() => {
         const airports: AirportData = airportNames;      
@@ -126,6 +127,15 @@ export default function Home() {
         <>
             <div>
                 <form onSubmit={handleSubmit} method="get" className={`container-fluid ${styles.content}`}>
+                    <div className={`row ${styles.contentText}`}>
+                        <div className={`col-5 ${styles.contentTextContent}`}>
+                            <h3>Take a break.</h3>
+                            <p>
+                                Take advantage of our searching algorithm and
+                                find the best price for your flight in one click.
+                            </p>
+                        </div>
+                    </div>
                     <div className={`row ${styles.contentRow}`}>
                         <div className={`col-4`}>
                             <Autocomplete
@@ -214,7 +224,7 @@ export default function Home() {
                     </div>
                     <div className={`row ${styles.contentRow}`}>
                         <div className={`col-2 ${styles.formButton}`}>
-                            <button className={`${styles.submitButton}`} type="submit">
+                            <button className={`${styles.submitButton}`} type="submit" disabled={isButtonDisabled}>
                                 Search
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"

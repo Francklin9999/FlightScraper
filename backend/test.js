@@ -48,8 +48,8 @@ const queryString2 = querystring.stringify({
 // Set up the request options
 const options = {
     hostname: 'localhost',
-    port: 3000,
-    path: `/api?${queryString}`, // Ensure '?' is included before the query string
+    port: 8080,
+    path: `/api/skyscanner?${queryString}`, // Ensure '?' is included before the query string
     method: 'GET',
 };
 

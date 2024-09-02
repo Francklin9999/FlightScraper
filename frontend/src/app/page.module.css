@@ -11,13 +11,14 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  background-color: blueviolet;
+  /* background-color: blueviolet; */
   display: flex;
   flex-direction: column;
   justify-content: end;
+  gap: 30px;
 }
 
-.ContentRow {
+.contentRow {
   width: 100%;
   margin: 0 0 0 12px;
   display: flex;
@@ -26,16 +27,16 @@
   gap: 10px;
 }
 
-.ContentInputs {
+.contentInputs {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  height: 50px;
-  border: 2px solid black;
+  /* border: 0.5px solid black; */
   border-radius: 8px;
   padding: 0;
+  /* background-color: white; */
 }
 
 .ContentDates {
@@ -79,15 +80,82 @@
   font-size: 20px; 
 }
 
-.submitButton {
+.formButton {
+  width: 100%;
   display: flex;
   justify-content: end;
+  align-items: end;
 }
 
-.test {
-  border: none;
-  background-color: aqua;
+.submitButton {
+  font-family: sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  /* margin: 0 auto; */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+  font-size: 1.125rem;
+  background-color: #f9fafb;
+  backdrop-filter: blur(10px);
+  font-weight: 600;
+  position: relative;
+  z-index: 10;
+  padding: 0.5rem 1rem;
+  overflow: hidden;
+  border: 2px solid #f9fafb;
+  border-radius: 9999px;
+  transition: color 0.3s ease-in-out;
 }
+
+.submitButton::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: -100%;
+  background-color: #10b981;
+  border-radius: 9999px;
+  z-index: -10;
+  aspect-ratio: 1 / 1;
+  transition: all 0.7s ease-in-out;
+}
+
+.submitButton:hover::before {
+  left: 0;
+  width: 100%;
+  transform: scale(1.5);
+}
+
+.submitButton:hover {
+  color: #f9fafb; 
+}
+
+.submitButton svg {
+  width: 2rem;
+  height: 2rem;
+  transform: rotate(45deg);
+  border-radius: 9999px;
+  border: 1px solid #374151; 
+  padding: 0.5rem;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+}
+
+.submitButton svg path {
+  fill: #1f2937;
+  transition: fill 0.3s ease-in-out;
+}
+
+.submitButton:hover svg {
+  transform: rotate(90deg);
+  background-color: #f9fafb;
+  border: none;
+}
+
+.submitButton:hover svg path {
+  fill: #1f2937;
+}
+
 
 .custom-autocomplete .MuiOutlinedInput-root {
   padding: 0;
@@ -98,28 +166,24 @@
 }
 
 .Location {
-  background-color: palegreen;
-  color: white !important;
+  border-radius: 12px;
   padding: 0;
 }
 
 .custom-autocomplete .MuiOutlinedInput-root .MuiOutlinedInput-notchedOutline {
   border: none;
   padding: 0; 
-  color: white !important;
 }
 
 .custom-autocomplete .MuiInputLabel-root {
   margin: 0;
   padding: 0; 
   color: inherit; 
-  color: white !important;
 }
 
 .custom-autocomplete .MuiInputBase-root {
   padding: 0; 
   margin: 0;
-  color: white !important;
 }
 
 /* Header */

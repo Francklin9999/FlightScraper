@@ -96,7 +96,7 @@ export default function Flights() {
 
     if(error) {
         return (
-            <div className={`conatiner`}>
+            <div className={`container`}>
                 Sorry an error as occur on our end. Please try agin later!
             </div>
         );
@@ -153,15 +153,17 @@ export default function Flights() {
                                         if(isSkyscannerFetchData(entry)) {
                                             return <SkyscannerComponent key={index} {...entry} />;
                                         }
-                                        break;
+                                        return;
                                     case "Flighthub":
                                         if(isFlighthubFetchData(entry)) {
                                             return <FlighthubComponent key={index} {...entry} />;
                                         }
+                                        return;
                                     case "Cheapflights":
                                         if(isCheapflightsFetchData(entry)) {
                                             return <CheapflightComponent key={index} {...entry} />;
                                         }
+                                        return;
                                     case "Expedia":
                                         return <ExpediaComponent key={index} {...entry} />;
                                     default:

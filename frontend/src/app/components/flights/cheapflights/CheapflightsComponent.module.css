@@ -1,0 +1,46 @@
+.cheapflightsComponent {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    margin: 16px 0;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+    align-self: center;
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.airline {
+    align-self: center;
+}
+
+.rowContent {
+    margin: 0;
+}
+
+.cheapflightsComponent div {
+    margin-bottom: 16px;
+}
+
+.cheapflightsComponent h3 {
+    font-size: 1.2rem;
+    margin-bottom: 4px;
+}
+
+.cheapflightsComponent p {
+    margin: 4px 0;
+}
+
+.cheapflightsComponent a {
+    color: #0070f3;
+    text-decoration: none;
+}
+
+.cheapflightsComponent a:hover {
+    text-decoration: underline;
+}

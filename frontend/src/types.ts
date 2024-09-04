@@ -73,18 +73,21 @@ export interface flighthubData {
 }
 
 export interface flighthubTextsData {
-    Airline?: any[], //TODO 
+    Airline: {
+        1: string,
+        2: string,
+    }, 
     Departure: {
-        img: string,
-        airline: string,
-        duration: string,
-        combinedTime: string,
+        Image: string,
+        Airline: string,
+        Duration: string,
+        Time: string,
     },
-    returnData: {
-        img: string,
-        airline: string,
-        duration: string,
-        combinedTime: string,
+    Return: {
+        Image: string,
+        Airline: string,
+        Duration: string,
+        Time: string,
     },
     Price: string,
 }
@@ -92,38 +95,42 @@ export interface flighthubTextsData {
 export interface cheapflightsFetchData {
     Site: string,
     Airline: string,
-    Departure: {
+    DepartureInfo: {
         Duration: string,
-        Stop: string
+        Stop: string,
+        CombinedTime: string,
     },
-    Return: {
+    ReturnInfo: {
         Duration: string,
-        Stop: string
+        Stop: string,
+        CombinedTime: string,
     },
     Price: string,
+    Url: string,
+    AdultNumber: string | number,
+    ClassFlight: string,
 }
 
 export interface cheapflightsData {
     site: string,
-    texts: flighthubTextsData[],
+    texts: cheapflightsTextsData[],
     url: string,
     adultNumber: string | number,
-    classFlight: string,
+    class: string,
 }
 
 export interface cheapflightsTextsData {
-    price: string,
-    img: string,
-    airline: string,
-    departureData: {
-        time: string,
-        stop: string,
-        duration: string,
+    Airline: string,
+    Departure: {
+        Duration: string,
+        Stop: string,
+        Time: string,
     },
-    returnData: {
-        time: string,
-        stop: string,
-        duration: string,
+    Return: {
+        Duration: string,
+        Stop: string,
+        Time: string,
     },
+    Price: string,
 }
 

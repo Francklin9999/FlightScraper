@@ -87,10 +87,17 @@ class Flighthub extends FlightScraper {
                             2: returnData.airline
                         },
                         Departure: {
+                            Image: departureData.img || '',
+                            Airline: departureData.airline || '',
                             Duration: departureData.duration || '',
+                            Time: departureData.combinedTime || '',
                         },
                         Return: {
-                            Duration: returnData || '',
+                            Image: returnData.img || '',
+                            Airline: returnData.airline || '',
+                            Duration: returnData.duration || '',
+                            Time: returnData.combinedTime || '',
+                            Duration: returnData.duration || '',
                             },
                         Price: price,
                     });

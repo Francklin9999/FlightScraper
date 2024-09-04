@@ -12,7 +12,6 @@ import ExpediaComponent from '@/app/components/flights/expedia/expedia';
 import { skyscannerFetchData, flighthubFetchData, cheapflightsFetchData } from '@/types';
 import styles from './page.module.css';
 import { isCheapflightsFetchData, isFlighthubFetchData, isSkyscannerFetchData } from '@/typeCheck';
-import { skyscannerData as testData } from '../../../../testData';
 
 export default function Flights() {
     const [state, setState] = useState<any>(null);
@@ -41,20 +40,17 @@ export default function Flights() {
             setLoading(false);
         };
 
-        // handleResponse('skyscanner', testData);
-        // handleResponse('skyscanner', testData);
-
-        // cheapflightsFetch(state).then(
-        //     (response) => handleResponse('cheapflights', response)
-        // ).catch(error => {
-        //     console.error('Error fetching cheap flights:', error);
-        // });
+        cheapflightsFetch(state).then(
+            (response) => handleResponse('cheapflights', response)
+        ).catch(error => {
+            console.error('Error fetching cheap flights:', error);
+        });
     
-        // flighthubFetch(state).then(
-        //     (response) => handleResponse('flighthub', response)
-        // ).catch(error => {
-        //     console.error('Error fetching flight hub:', error);
-        // });
+        flighthubFetch(state).then(
+            (response) => handleResponse('flighthub', response)
+        ).catch(error => {
+            console.error('Error fetching flighthub:', error);
+        });
     
         skyscannerFetch(state).then(
             (response) => {handleResponse('skyscanner', response)

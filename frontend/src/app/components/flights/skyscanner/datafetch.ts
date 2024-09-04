@@ -1,7 +1,6 @@
 "use client"
 
 import { skyscannerData, skyscannerFetchData, skyscannerTextsData } from "@/types";
-import { skyscannerData as testData } from '../../../../../../testData.js';
 
 export default async function skyscannerFetch(params: any) {
     const url = 'http://localhost:8080/api/skyscanner';
@@ -9,12 +8,12 @@ export default async function skyscannerFetch(params: any) {
         // const queryParams = new URLSearchParams(params as any).toString();
         // const response = await fetch(`${url}?${queryParams}`);
         // const data: any = await response.json();
-        const data: any = JSON.parse(JSON.stringify(testData))
+        const data: any = JSON.parse(JSON.stringify(testData));
         const skyscannerData : skyscannerFetchData[] = transformData(data);
         return skyscannerData;
     } catch(error) {
         console.error(error);
-        return null;
+        return;
     }
 }
 
@@ -47,3 +46,135 @@ function transformData(data: skyscannerData): skyscannerFetchData[] {
         };
     });
 }
+
+// 20240902002247
+// http://localhost:8080/api/skyscanner?origin=Montreal%20-%20Dorval%20(Montr%C3%A9al-Trudeau)%20-%20YUL&destination=New%20York%20-%20John%20F.%20Kennedy%20(NY)%20-%20JFK&departure=2024-10-09&return=2024-11-09&adults=1%20Adult&class=Economy&headless=true
+
+const testData = {
+    "site": "SkyScanner",
+    "texts": [
+      {
+        "Airline": "WestJet",
+        "Departure": {
+          "Duration": "1h 46",
+          "Stop": "NonStop"
+        },
+        "Return": {
+          "Duration": "4h 55",
+          "Stop": "1 stop"
+        },
+        "Price": "C$484"
+      },
+      {
+        "Airline": "WestJet",
+        "Departure": {
+          "Duration": "1h 45",
+          "Stop": "NonStop"
+        },
+        "Return": {
+          "Duration": "4h 55",
+          "Stop": "1 stop"
+        },
+        "Price": "C$490"
+      },
+      {
+        "Airline": "WestJet",
+        "Departure": {
+          "Duration": "1h 46",
+          "Stop": "NonStop"
+        },
+        "Return": {
+          "Duration": "4h 55",
+          "Stop": "1 stop"
+        },
+        "Price": "C$490"
+      },
+      {
+        "Airline": "WestJet",
+        "Departure": {
+          "Duration": "1h 45",
+          "Stop": "NonStop"
+        },
+        "Return": {
+          "Duration": "4h 28",
+          "Stop": "1 stop"
+        },
+        "Price": "C$525"
+      },
+      {
+        "Airline": "WestJet",
+        "Departure": {
+          "Duration": "1h 46",
+          "Stop": "NonStop"
+        },
+        "Return": {
+          "Duration": "4h 28",
+          "Stop": "1 stop"
+        },
+        "Price": "C$525"
+      },
+      {
+        "Airline": "WestJet",
+        "Departure": {
+          "Duration": "1h 46",
+          "Stop": "NonStop"
+        },
+        "Return": {
+          "Duration": "4h 28",
+          "Stop": "1 stop"
+        },
+        "Price": "C$519"
+      },
+      {
+        "Airline": "Delta",
+        "Departure": {
+          "Duration": "1h 46",
+          "Stop": "NonStop"
+        },
+        "Return": {
+          "Duration": "4h 55",
+          "Stop": "1 stop"
+        },
+        "Price": "C$917"
+      },
+      {
+        "Airline": "Delta",
+        "Departure": {
+          "Duration": "1h 45",
+          "Stop": "NonStop"
+        },
+        "Return": {
+          "Duration": "4h 55",
+          "Stop": "1 stop"
+        },
+        "Price": "C$962"
+      },
+      {
+        "Airline": "Delta",
+        "Departure": {
+          "Duration": "1h 46",
+          "Stop": "NonStop"
+        },
+        "Return": {
+          "Duration": "4h 55",
+          "Stop": "1 stop"
+        },
+        "Price": "C$962"
+      },
+      {
+        "Airline": "Delta",
+        "Departure": {
+          "Duration": "1h 45",
+          "Stop": "NonStop"
+        },
+        "Return": {
+          "Duration": "4h 28",
+          "Stop": "1 stop"
+        },
+        "Price": "C$1,018"
+      }
+    ],
+    "url": "https://www.skyscanner.ca/transport/vols/YUL/JFK/20241009/20241109/?adultsv2=1&cabinclass=economy&childrenv2=&ref=home&rtn=1&preferdirects=false&outboundaltsenabled=false&inboundaltsenabled=false",
+    "adultNumber": 1,
+    "classFlight": "economy"
+  }

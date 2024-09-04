@@ -101,11 +101,13 @@ class Cheapflights extends FlightScraper {
                     Airline: airline,
                     Departure: {
                         Duration: departureData.duration,
-                        Stop: departureData.stop
+                        Stop: departureData.stop,
+                        Time: departureData.time,
                     },
                     Return: {
                         Duration: returnData.duration,
-                        Stop: returnData.stop
+                        Stop: returnData.stop,
+                        Time: returnData.time,
                     },
                     Price: price,
                 });

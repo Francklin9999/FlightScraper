@@ -24,6 +24,7 @@ import styles from './SkyscannerComponent.module.css';
 export default function SkyscannerComponent({
     Site,
     Airline,
+    Img,
     DepartureInfo,
     ReturnInfo,
     Price,
@@ -41,6 +42,7 @@ export default function SkyscannerComponent({
                     <h3>Departure Info</h3>
                     <p>Duration: {DepartureInfo.Duration}</p>
                     <p>Stop: {DepartureInfo.Stop}</p>
+                    <img src={Img} />
                 </div>
                 <div className={`col`}>
                     <h3>Return Info</h3>

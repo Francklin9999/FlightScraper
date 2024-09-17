@@ -24,11 +24,14 @@ export default function CheapflightComponent({
                     <p>Duration: { DepartureInfo.Duration }</p>
                     <p>Stop: { DepartureInfo.Stop }</p>
                     <p>Time: { DepartureInfo.CombinedTime }</p>
+                    <img src={DepartureInfo.Img} />
                 </div>
                 <div className={`col`}>
+                    <h3>Return Info</h3>
                     <p>Duration: { ReturnInfo.Duration }</p>
                     <p>Stop: { ReturnInfo.Stop }</p>
                     <p>Time: { ReturnInfo.CombinedTime }</p>
+                    <img src={ReturnInfo.Img} />
                 </div>
             </div>
             <div className={`row`}>

@@ -8,6 +8,7 @@ export interface AirportData {
 export interface skyscannerFetchData {
     Site: string,
     Airline: string,
+    Img: string,
     DepartureInfo: {
         Duration: string,
         Stop: string,
@@ -31,19 +32,19 @@ export interface skyscannerData {
 }
 
 export interface skyscannerTextsData {
-        Price: string,
-        img: string,
-        Airline: string | "helllo",
-        Departure: {
-            time: string;
-            Duration: string,
-            Stop: string,
-        },
-        Return: {
-            time: string;
-            Duration: string,
-            Stop: string,
-        },
+    Airline: string,
+    Img: string,
+    Departure: {
+        time: string;
+        Duration: string,
+        Stop: string,
+    },
+    Return: {
+        time: string;
+        Duration: string,
+        Stop: string,
+    },
+    Price: string,
 }
 
 export interface flighthubFetchData {
@@ -52,11 +53,13 @@ export interface flighthubFetchData {
         Airline: string,
         Duration: string,
         CombinedTime: string,
+        Img: string,
     },
     ReturnInfo: {
         Airline: string,
         Duration: string,
         CombinedTime: string,
+        Img: string,
         },
     Price: string,
     Url: string,
@@ -78,16 +81,16 @@ export interface flighthubTextsData {
         2: string,
     }, 
     Departure: {
-        Image: string,
         Airline: string,
         Duration: string,
         Time: string,
+        Img: string,
     },
     Return: {
-        Image: string,
         Airline: string,
         Duration: string,
         Time: string,
+        Img: string,
     },
     Price: string,
 }
@@ -99,11 +102,13 @@ export interface cheapflightsFetchData {
         Duration: string,
         Stop: string,
         CombinedTime: string,
+        Img: string,
     },
     ReturnInfo: {
         Duration: string,
         Stop: string,
         CombinedTime: string,
+        Img: string,
     },
     Price: string,
     Url: string,
@@ -125,11 +130,13 @@ export interface cheapflightsTextsData {
         Duration: string,
         Stop: string,
         Time: string,
+        Img: string,
     },
     Return: {
         Duration: string,
         Stop: string,
         Time: string,
+        Img: string,
     },
     Price: string,
 }

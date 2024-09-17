@@ -21,8 +21,8 @@ function transformData(data: cheapflightsData): cheapflightsFetchData[] {
     return data.texts.map((flight: cheapflightsTextsData) => {
         const site = data.site;
         const airline = flight.Airline;
-        const departureInfo = [flight.Departure.Duration, flight.Departure.Stop, flight.Departure.Time];
-        const returnInfo = [flight.Return.Duration, flight.Return.Stop, flight.Return.Time];
+        const departureInfo = [flight.Departure.Duration, flight.Departure.Stop, flight.Departure.Time, flight.Departure.Img];
+        const returnInfo = [flight.Return.Duration, flight.Return.Stop, flight.Return.Time, flight.Return.Img];
         const price = flight.Price;
         const url = data.url;
         const adultNumber = data.adultNumber;
@@ -34,11 +34,13 @@ function transformData(data: cheapflightsData): cheapflightsFetchData[] {
                 Duration: departureInfo[0],
                 Stop: departureInfo[1],
                 CombinedTime: departureInfo[2],
+                Img: departureInfo[3],
             },
             ReturnInfo: {
                 Duration: returnInfo[0],
                 Stop: returnInfo[1],
                 CombinedTime: returnInfo[2],
+                Img: returnInfo[3],
             },
             Price: price,
             Url: url,

@@ -90,12 +90,13 @@ class Cheapflights extends FlightScraper {
                     return {
                         time: time,
                         stop: duration[0] || '',
-                        duration: duration[1] || ''
+                        duration: duration[1] || '',
+                        img: img,
                     };
                 });
 
-                const departureData = data[0] || { time: '', stop: '', duration: '' };
-                const returnData = data[1] || { time: '', stop: '', duration: '' };
+                const departureData = data[0] || { time: '', stop: '', duration: '', img: '' };
+                const returnData = data[1] || { time: '', stop: '', duration: '', img: '' };
 
                 results.push({
                     Airline: airline,
@@ -103,11 +104,13 @@ class Cheapflights extends FlightScraper {
                         Duration: departureData.duration,
                         Stop: departureData.stop,
                         Time: departureData.time,
+                        Img: departureData.img,
                     },
                     Return: {
                         Duration: returnData.duration,
                         Stop: returnData.stop,
                         Time: returnData.time,
+                        Img: departureData.img,
                     },
                     Price: price,
                 });

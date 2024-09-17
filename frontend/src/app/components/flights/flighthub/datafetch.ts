@@ -20,8 +20,8 @@ export default async function flighthubFetch(params: any) {
 function transformData(data: flighthubData): flighthubFetchData[] {
     return data.texts.map((flight: flighthubTextsData) => {
         const site = data.site;
-        const departureInfo = [flight.Departure.Airline, flight.Departure.Duration, flight.Departure.Time];
-        const returnInfo = [flight.Return.Airline, flight.Return.Duration, flight.Return.Time];
+        const departureInfo = [flight.Departure.Airline, flight.Departure.Duration, flight.Departure.Time, flight.Departure.Img];
+        const returnInfo = [flight.Return.Airline, flight.Return.Duration, flight.Return.Time, flight.Return.Img];
         const price = flight.Price;
         const url = data.url;
         const adultNumber = data.adultNumber;
@@ -32,11 +32,13 @@ function transformData(data: flighthubData): flighthubFetchData[] {
                 Airline: departureInfo[0],
                 Duration: departureInfo[1],
                 CombinedTime: departureInfo[2],
+                Img: departureInfo[3],
             },
             ReturnInfo: {
                 Airline: returnInfo[0],
                 Duration: returnInfo[1],
                 CombinedTime: returnInfo[2],
+                Img: returnInfo[3],
             },
             Price: price,
             Url: url,

@@ -24,12 +24,14 @@ export default function FlighthubComponent({
                     <h2 className={`row ${styles.airline}`}> Airline: { DepartureInfo.Airline } </h2>
                     <p>Duration: {DepartureInfo.Duration}</p>
                     <p>Stop: {DepartureInfo.CombinedTime}</p>
+                    <img src={DepartureInfo.Img} />
                 </div>
-                <div className={`col`}>
+                <div className={`col`}> 
                     <h3>Return Info</h3>
                     <h2 className={`row ${styles.airline}`}> Airline: { DepartureInfo.Airline } </h2>
                     <p>Duration: {ReturnInfo.Duration}</p>
                     <p>Stop: {ReturnInfo.CombinedTime}</p>
+                    <img src={DepartureInfo.Img} />
                 </div>
             </div>
             <div className={`row`}>

@@ -21,6 +21,7 @@ function transformData(data: skyscannerData): skyscannerFetchData[] {
     return data.texts.map((flight: skyscannerTextsData) => {
         const site = data.site;
         const airline = flight.Airline;
+        const img = flight.Img;
         const departureInfo = [flight.Departure.Duration, flight.Departure.Stop]; 
         const returnInfo = [flight.Return.Duration, flight.Return.Stop]; 
         const price = flight.Price; 
@@ -31,6 +32,7 @@ function transformData(data: skyscannerData): skyscannerFetchData[] {
         return {
             Site: site,
             Airline: airline,
+            Img: img,
             DepartureInfo: {
                 Duration: departureInfo[0],
                 Stop: departureInfo[1] || 'NonStop',

@@ -16,6 +16,7 @@ import { isCheapflightsFetchData, isFlighthubFetchData, isSkyscannerFetchData } 
 export default function Flights() {
     const [state, setState] = useState<any>(null);
     const [data, setData] = useState<any[]>([]);
+    const [filteredData, setFilteredData] = useState<any[]>([]);
     const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<boolean>(false);
     const initialStateRef = useRef<any>(null);
@@ -33,28 +34,30 @@ export default function Flights() {
       }, []);
     
       const fetchData = useCallback(() => {
-        const handleResponse = (key: any, response: any) => {
-            console.log(response);
+        const handleResponse = (response: any) => {
+            const filteredResponse = response.filter((entry: any) => entry !== null);
             setData(prevData =>
-                [...prevData, response]);
+                [...prevData, ...filteredResponse]);
             setLoading(false);
         };
 
         cheapflightsFetch(state).then(
-            (response) => handleResponse('cheapflights', response)
+            // (response) => handleResponse('cheapflights', response)
+            (response) => handleResponse(response)
         ).catch(error => {
-            console.error('Error fetching cheap flights:', error);
+            console.error('Error fetching cheapflights:', error);
         });
     
         flighthubFetch(state).then(
-            (response) => handleResponse('flighthub', response)
+            // (response) => handleResponse('flighthub', response)
+            (response) => handleResponse(response)
         ).catch(error => {
             console.error('Error fetching flighthub:', error);
         });
     
         skyscannerFetch(state).then(
-            (response) => {handleResponse('skyscanner', response)
-            console.log(data)}
+            // (response) => {handleResponse('skyscanner', response)
+            (response) => handleResponse(response)
         ).catch(error => {
             console.error('Error fetching Skyscanner:', error);
         });
@@ -76,6 +79,41 @@ export default function Flights() {
 
         loadData();
     }, [fetchData, state]);
+
+    const handleFilterData = (key: string) => {
+        if (key === 'bestPrice') {
+            const sortedData = [...data].sort((a, b) => {
+                const priceA = parseFloat(a.Price.replace(/[^0-9.-]/g, ''));
+                const priceB = parseFloat(b.Price.replace(/[^0-9.-]/g, ''));
+    
+                return priceA - priceB;
+            });
+            setFilteredData(sortedData);
+            console.log('bestPrice clicked');
+        }
+    
+        if (key === 'fatest') {
+            const convertDurationToMinutes = (duration: string) => {
+                const hoursMatch = duration.match(/(\d+)h/);
+                const minutesMatch = duration.match(/(\d+)m/);
+    
+                const hours = hoursMatch ? parseInt(hoursMatch[1], 10) : 0;
+                const minutes = minutesMatch ? parseInt(minutesMatch[1], 10) : 0;
+    
+                return hours * 60 + minutes;
+            };
+    
+            const sortedData = [...data].sort((a, b) => {
+                const durationA = convertDurationToMinutes(a.DepartureInfo.Duration) + convertDurationToMinutes(a.ReturnInfo.Duration);
+                const durationB = convertDurationToMinutes(b.DepartureInfo.Duration) + convertDurationToMinutes(b.ReturnInfo.Duration);
+    
+                return durationA - durationB;
+            });
+            setFilteredData(sortedData);
+            console.log('fatest clicked');
+        }
+    };
+    
 
 
     if(loading) {
@@ -140,38 +178,53 @@ export default function Flights() {
                 </div>
             </div>
             <div className={`container-fluid ${styles.searchContent}`}>
-                <div className={`row`}>
-                <div className="col">
-                    {data.length == 0 ? (
-                        <p>Nothing found</p>
-                    ) : (
-                        data.map((item: [], index: number) => {
-                            if (item === null) return;
-                            return item.map((entry: skyscannerFetchData | flighthubFetchData | cheapflightsFetchData) => {
-                                switch (entry.Site) {
-                                    case "SkyScanner":
-                                        if(isSkyscannerFetchData(entry)) {
-                                            return <SkyscannerComponent key={index} {...entry} />;
-                                        }
-                                        return;
-                                    case "Flighthub":
-                                        if(isFlighthubFetchData(entry)) {
-                                            return <FlighthubComponent key={index} {...entry} />;
-                                        }
-                                        return;
-                                    case "Cheapflights":
-                                        if(isCheapflightsFetchData(entry)) {
-                                            return <CheapflightComponent key={index} {...entry} />;
-                                        }
-                                        return;
-                                    case "Expedia":
-                                        return <ExpediaComponent key={index} {...entry} />;
-                                    default:
-                                        return <p>{entry.Site}</p>;
-                                }
-                            });
-                    }))}
+                <div className={`container`}>
+                    <div className={`row`}>
+                        <button onClick={() => handleFilterData('bestPrice')}>
+                            Best Price
+                        </button>
+                        <button onClick={() => handleFilterData('fatest')}>
+                            Fastest
+                        </button>
+                        <button onClick={() => handleFilterData('airline')}>
+                            Select an Airline
+                        </button>
+                    </div>
                 </div>
+                <div className={`container`}>
+                    <div className={`row`}>
+                        <div className="col">
+                            {data.length === 0 ? (
+                                <p>Nothing found</p>
+                            ) : (
+                                (() => {
+                                    const loopData = filteredData.length === 0 ? data : filteredData;
+                                    const limitedData = loopData.slice(0, 15);
+                                    
+                                    return limitedData.map((entry, index) => {
+                                        switch (entry.Site) {
+                                            case "SkyScanner":
+                                                return isSkyscannerFetchData(entry) ? (
+                                                    <SkyscannerComponent key={index} {...entry} />
+                                                ) : null;
+                                            case "Flighthub":
+                                                return isFlighthubFetchData(entry) ? (
+                                                    <FlighthubComponent key={index} {...entry} />
+                                                ) : null;
+                                            case "Cheapflights":
+                                                return isCheapflightsFetchData(entry) ? (
+                                                    <CheapflightComponent key={index} {...entry} />
+                                                ) : null;
+                                            case "Expedia":
+                                                return <ExpediaComponent key={index} {...entry} />;
+                                            default:
+                                                return <p key={index}>{entry.Site}</p>;
+                                        }
+                                    });
+                                })()
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
         </>

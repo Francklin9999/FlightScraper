@@ -90,6 +90,7 @@ class Skyscanner extends FlightScraper {
         
                     results.push({
                         Airline: airline,
+                        Img: img,
                         Departure: {
                             Duration: dataArr[0].duration || '',
                             Stop: dataArr[0].stop || 'NonStop'

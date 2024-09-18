@@ -5,10 +5,10 @@ import { skyscannerData, skyscannerFetchData, skyscannerTextsData } from "@/type
 export default async function skyscannerFetch(params: any) {
     const url = 'http://localhost:8080/api/skyscanner';
     try {
-        // const queryParams = new URLSearchParams(params as any).toString();
-        // const response = await fetch(`${url}?${queryParams}`);
-        // const data: any = await response.json();
-        const data: any = JSON.parse(JSON.stringify(testData));
+        const queryParams = new URLSearchParams(params as any).toString();
+        const response = await fetch(`${url}?${queryParams}`);
+        const data: any = await response.json();
+        // const data: any = JSON.parse(JSON.stringify(testData));
         const skyscannerData : skyscannerFetchData[] = transformData(data);
         return skyscannerData;
     } catch(error) {

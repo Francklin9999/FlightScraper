@@ -2,7 +2,7 @@ const { SkyScanner } = require('../../core/main');
 const { transformParameters } = require('../utils/transformParameters');
 
 async function skyscannerHandler(req, res) {
-    console.log('Request received');
+    console.log('Request skyscanner received');
     try {
         const data = req.query;
         if (Object.keys(data).length === 0) {
@@ -10,7 +10,7 @@ async function skyscannerHandler(req, res) {
         }
         console.log('Processing');
         const result = await SkyScanner(transformParameters(data));
-        console.log('Processed');
+        console.log(result);
         res.json(result);
     } catch (error) {
         console.error('Error processing SkyScanner function:', error);

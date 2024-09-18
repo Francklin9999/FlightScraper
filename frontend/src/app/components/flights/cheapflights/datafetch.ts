@@ -5,10 +5,10 @@ import { cheapflightsData, cheapflightsFetchData, cheapflightsTextsData } from "
 export default async function cheapflightsFetch(params: any) {
     const url = 'http://localhost:8080/api/cheapflights';
     try {
-        // const queryParams = new URLSearchParams(params as any).toString();
-        // const response = await fetch(`${url}${queryParams}`);
-        // const data: any = await response.json();
-        const data: any = JSON.parse(JSON.stringify(testData));
+        const queryParams = new URLSearchParams(params as any).toString();
+        const response = await fetch(`${url}?${queryParams}`);
+        const data: any = await response.json();
+        // const data: any = JSON.parse(JSON.stringify(testData));
         const cheapflightsData: cheapflightsFetchData[] = transformData(data);
         return cheapflightsData;
     } catch (error) {

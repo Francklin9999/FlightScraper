@@ -13,9 +13,9 @@ const PORT = PORT_BACKEND;
 app.use(cors());
 app.use(express.json());
 
-app.get('/api/expedia', expediaHandler);
-app.get('/api/flighthub', flighthubHandler);
-app.get('/api/skyscanner', skyscannerHandler);
+// app.get('/api/expedia', expediaHandler);
+// app.get('/api/flighthub', flighthubHandler);
+// app.get('/api/skyscanner', skyscannerHandler);
 app.get('/api/cheapflights', cheapflightsHandler);
 
 app.listen(PORT, () => {

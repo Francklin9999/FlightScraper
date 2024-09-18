@@ -2,6 +2,7 @@ const { Flighthub } = require('../../core/main');
 const { transformParameters } = require('../utils/transformParameters');
 
 async function flighthubHandler(req, res) {
+    console.log('Request flighthub received');
     try {
         const data = req.query;
         if (Object.keys(data).length === 0) {

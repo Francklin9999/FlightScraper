@@ -1,6 +1,8 @@
 "use client"
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
 import cheapflightsFetch from '@/app/components/flights/cheapflights/datafetch';
 import CheapflightComponent from '@/app/components/flights/cheapflights/cheapflights';
 import flighthubFetch from '@/app/components/flights/flighthub/datafetch';
@@ -21,6 +23,10 @@ export default function Flights() {
     const [error, setError] = useState<boolean>(false);
     const initialStateRef = useRef<any>(null);
     
+    const [selectedAirline, setSelectedAirline] = useState<string | null>(null);
+    const airlines = ['WestJet', 'Delta', 'Royal Air Maroc', 'Air Algerie', 'Rwandadir Express', 'Kenya Airways', 'United Airlines', 'Swiss International Air Lines', 'Brussels Airlines', 'Air Canada'];
+
+    let numberOfError = 0;
 
     useEffect(() => {
         const storedState: any = sessionStorage.getItem('formState');
@@ -45,6 +51,11 @@ export default function Flights() {
             // (response) => handleResponse('cheapflights', response)
             (response) => handleResponse(response)
         ).catch(error => {
+            numberOfError++;
+            if(numberOfError === 3) {
+                setError(true);
+                setLoading(false);
+                }
             console.error('Error fetching cheapflights:', error);
         });
     
@@ -52,6 +63,11 @@ export default function Flights() {
             // (response) => handleResponse('flighthub', response)
             (response) => handleResponse(response)
         ).catch(error => {
+            numberOfError++;
+            if(numberOfError === 3) {
+                setError(true);
+                setLoading(false);
+                }
             console.error('Error fetching flighthub:', error);
         });
     
@@ -59,6 +75,11 @@ export default function Flights() {
             // (response) => {handleResponse('skyscanner', response)
             (response) => handleResponse(response)
         ).catch(error => {
+            numberOfError++;
+            if(numberOfError === 3) {
+                setError(true);
+                setLoading(false);
+                }
             console.error('Error fetching Skyscanner:', error);
         });
     
@@ -80,7 +101,7 @@ export default function Flights() {
         loadData();
     }, [fetchData, state]);
 
-    const handleFilterData = (key: string) => {
+    const handleFilterData = (key: string, ...text : any) => {
         if (key === 'bestPrice') {
             const sortedData = [...data].sort((a, b) => {
                 const priceA = parseFloat(a.Price.replace(/[^0-9.-]/g, ''));
@@ -111,6 +132,20 @@ export default function Flights() {
             });
             setFilteredData(sortedData);
             console.log('fatest clicked');
+        }
+
+        if (key === 'airline') {
+            const filteredData = data.filter(item => {
+                if ('Airline' in item) {
+                    return item.Airline === selectedAirline;
+                }
+                if ('DepartureInfo' in item && 'Airline' in item.DepartureInfo) {
+                    return item.DepartureInfo.Airline === selectedAirline || item.ReturnInfo.Airline === selectedAirline;
+                }
+                return false;
+            });;
+            setFilteredData(filteredData);
+            console.log('airline clicked');
         }
     };
     
@@ -186,9 +221,18 @@ export default function Flights() {
                         <button onClick={() => handleFilterData('fatest')}>
                             Fastest
                         </button>
-                        <button onClick={() => handleFilterData('airline')}>
-                            Select an Airline
-                        </button>
+                        <div>
+                            <button onClick={() => handleFilterData('airline', selectedAirline)}>
+                                Select an Airline
+                            </button>
+                            <Autocomplete
+                                disablePortal
+                                options={airlines}
+                                value={selectedAirline}
+                                onChange={(event, newValue) => setSelectedAirline(newValue)}
+                                renderInput={(params) => <TextField {...params} label="Airline" />}
+                            />
+                        </div>
                     </div>
                 </div>
                 <div className={`container`}>

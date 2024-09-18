@@ -2,6 +2,7 @@ const { Expedia } = require('../../core/main');
 const { transformParameters } = require('../utils/transformParameters');
 
 async function expediaHandler(req, res) {
+    console.log('Request expedia received');
     try {
         const data = req.query;
         if (Object.keys(data).length === 0) {
